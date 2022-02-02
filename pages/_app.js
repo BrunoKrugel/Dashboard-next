@@ -1,5 +1,5 @@
 import '../styles/globals.css';
-import {ThemeProvider, createTheme} from '@mui/material';
+import { ThemeProvider, createTheme } from '@mui/material';
 
 const theme = createTheme({
   palette: {
@@ -15,7 +15,7 @@ const theme = createTheme({
 function MyApp({ Component, pageProps }) {
   return (
     <ThemeProvider theme={theme}>
-    <Component {...pageProps} />
+      <Component {...pageProps} />
     </ThemeProvider>
   );
 }
