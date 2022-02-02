@@ -2,6 +2,7 @@ import Head from 'next/head';
 import Image from 'next/image';
 import Link from 'next/link';
 import styles from '../styles/Home.module.css';
+import {Button, TextField, Paper} from '@mui/material';
 
 export default function Home() {
   return (
@@ -14,26 +15,15 @@ export default function Home() {
 
       <main className={styles.main}>
 
-        <div className={styles.card}>
-        <label>Name</label>
-        <input id="name" name="name" type="text" autoComplete="name" required />
-        <button>Login</button>
-        <button>Sign In</button>
+        <Paper className={styles.card} elevation={3}>
+        <TextField id="user" label="User" variant="outlined" />
+        <TextField id="password" label="Password" variant="outlined" type='password' />
+        <div>
+        <Button variant="contained">Login</Button>
+        <Button variant="outlined">Sign in</Button>
         </div>
+        </Paper>
       </main>
-
-      <footer className={styles.footer}>
-        <a
-          href="https://vercel.com?utm_source=create-next-app&utm_medium=default-template&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Powered by{' '}
-          <span className={styles.logo}>
-            <Image src="/vercel.svg" alt="Vercel Logo" width={72} height={16} />
-          </span>
-        </a>
-      </footer>
     </div>
   );
 }

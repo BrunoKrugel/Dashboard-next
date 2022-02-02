@@ -9,6 +9,9 @@
     "format": "prettier --write \"{,!(.next)/**/}*.{js, jsx}\""
   },
   "dependencies": {
+    "@emotion/react": "^11.7.1",
+    "@emotion/styled": "^11.6.0",
+    "@mui/material": "^5.4.0",
     "eslint-config-prettier": "^8.3.0",
     "next": "12.0.10",
     "prettier": "^2.5.1",
