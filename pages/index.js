@@ -15,6 +15,8 @@ export default function Home() {
       <main className={styles.main}>
 
         <div className={styles.card}>
+        <label>Name</label>
+        <input id="name" name="name" type="text" autoComplete="name" required />
         <button>Login</button>
         <button>Sign In</button>
         </div>
