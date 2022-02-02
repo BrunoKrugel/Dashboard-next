@@ -24,6 +24,10 @@ const handleSubmit = async (e) => {
   }
 };
 
+const createUser = async (e) => {
+  console.log("oi");
+};
+
 export default function Home({ isConnected }) {
   return (
     <div className={styles.container}>
@@ -37,12 +41,9 @@ export default function Home({ isConnected }) {
         <form onSubmit={handleSubmit}>
           <Paper className={styles.card} elevation={3}>
             {isConnected ? (
-              <h2 className="subtitle">You are connected to MongoDB</h2>
+              <Alert severity="success">DB connected!</Alert>
             ) : (
-              <h2 className="subtitle">
-                You are NOT connected to MongoDB. Check the{' '}
-                <code>README.md</code> for instructions.
-              </h2>
+              <Alert severity="error">DB not connected!</Alert>
             )}
             <TextField id="user" label="User" variant="outlined" />
             <TextField
@@ -55,7 +56,9 @@ export default function Home({ isConnected }) {
               <Button type="submit" variant="contained">
                 Login
               </Button>
-              <Button variant="outlined">Sign in</Button>
+             <Link href="/auth/login" passHref>
+                <Button variant="outlined">Sign in</Button>
+             </Link>
             </div>
           </Paper>
         </form>

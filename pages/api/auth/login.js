@@ -2,10 +2,7 @@ import clientPromise from '../../../lib/mongodb';
 
 export default async function handler(req, res) {
   const client = await clientPromise;
-  client
-    .db()
-    .collection('login')
-    .findOne(
+  client.db().collection('login').findOne(
       {
         username: req.body.username,
         password: req.body.password,
