@@ -3,7 +3,21 @@ import Image from 'next/image';
 import Link from 'next/link';
 import styles from '../styles/Home.module.css';
 import {Button, TextField, Paper} from '@mui/material';
-import clientPromise from '../lib/mongodb'
+import clientPromise from '../lib/mongodb';
+import axios from 'axios';
+
+const handleSubmit = async (e) => {
+  e.preventDefault();
+  const username = e.target.user.value;
+  const password = e.target.password.value;
+  console.log(username, password);
+  try {
+    await axios.post(`${window.location.origin}/api/auth/login`, {username,password});
+    localStorage.setItem('isLogged', "true");
+  } catch (error) {
+    localStorage.setItem('isLogged', "" );
+  }
+}
 
 export default function Home({ isConnected }) {
   return (
@@ -15,23 +29,24 @@ export default function Home({ isConnected }) {
       </Head>
 
       <main className={styles.main}>
-
-        <Paper className={styles.card} elevation={3}>
-        {isConnected ? (
-          <h2 className="subtitle">You are connected to MongoDB</h2>
-        ) : (
-          <h2 className="subtitle">
-            You are NOT connected to MongoDB. Check the <code>README.md</code>{' '}
-            for instructions.
-          </h2>
-        )}
-        <TextField id="user" label="User" variant="outlined" />
-        <TextField id="password" label="Password" variant="outlined" type='password' />
-        <div>
-        <Button variant="contained">Login</Button>
-        <Button variant="outlined">Sign in</Button>
-        </div>
-        </Paper>
+        <form onSubmit={handleSubmit}>
+          <Paper className={styles.card} elevation={3}>
+          {localStorage.getItem("isLogged") ? (
+            <h2 className="subtitle">You are connected to MongoDB</h2>
+            ) : (
+              <h2 className="subtitle">
+              You are NOT connected to MongoDB. Check the <code>README.md</code>{' '}
+              for instructions.
+            </h2>
+          )}
+          <TextField id="user" label="User" variant="outlined" />
+          <TextField id="password" label="Password" variant="outlined" type='password' />
+          <div>
+          <Button type="submit" variant="contained">Login</Button>
+          <Button variant="outlined">Sign in</Button>
+          </div>
+          </Paper>
+        </form>
       </main>
     </div>
   );
