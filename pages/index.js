@@ -10,22 +10,20 @@ const handleSubmit = async (e) => {
   e.preventDefault();
   const username = e.target.user.value;
   const password = e.target.password.value;
-  console.log(username, password);
   try {
     await axios.post(`${window.location.origin}/api/auth/login`, {
       username,
       password,
     });
     localStorage.setItem('isLogged', 'true');
-    <Alert severity="success">This is a success alert — check it out!</Alert>
+    localStorage.setItem('username', username);
   } catch (error) {
     localStorage.setItem('isLogged', '');
-    <Alert severity="error">This is an error alert — check it out!</Alert>
   }
 };
 
 const createUser = async (e) => {
-  console.log("oi");
+  console.log('oi');
 };
 
 export default function Home({ isConnected }) {
@@ -56,9 +54,9 @@ export default function Home({ isConnected }) {
               <Button type="submit" variant="contained">
                 Login
               </Button>
-             <Link href="/auth/login" passHref>
+              <Link href="/auth/createUser" passHref>
                 <Button variant="outlined">Sign in</Button>
-             </Link>
+              </Link>
             </div>
           </Paper>
         </form>

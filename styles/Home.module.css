@@ -78,6 +78,7 @@
   padding: 1.5rem;
   display: flex;
   flex-direction: column;
+  width: 450px;
   gap: .5rem;
 }
 
@@ -86,7 +87,7 @@
   gap: .5rem;
 }
 
-.card button {
+.card button, .card a {
   width: 100%;
 }
 

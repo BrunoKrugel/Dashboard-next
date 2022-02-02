@@ -1,6 +1,6 @@
 import React from 'react';
 import Link from 'next/link';
-const login = () => {
+const createUser = () => {
   return (
     <div>
       {' '}
@@ -10,4 +10,4 @@ const login = () => {
   );
 };
 
-export default login;
+export default createUser;
