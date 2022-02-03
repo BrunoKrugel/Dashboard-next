@@ -1,0 +1,50 @@
+.container {
+    padding: 0 2rem;
+}
+
+.main {
+    min-height: 100vh;
+    padding: 4rem 0;
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+  }
+
+.card {
+    margin: 1rem;
+    padding: 1.5rem;
+    display: flex;
+    flex-direction: column;
+    width: 450px;
+    gap: .5rem;
+}
+
+
+.card>div {
+    display: flex;
+    gap: .5rem;
+}
+
+.card button, .card a {
+    width: 100%;
+}
+
+.widget {
+    margin: 1rem;
+    padding: 1.5rem;
+    display: flex;
+    flex-direction: column;
+    gap: .5rem;
+    background: #6165F8;
+}
+
+.widget>div {
+    display: flex;
+    gap: .5rem;
+}
+
+.widget button, .widget a {
+    width: 100%;
+}

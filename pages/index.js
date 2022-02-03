@@ -6,10 +6,9 @@ import { Button, TextField, Paper, Alert } from '@mui/material';
 import clientPromise from '../lib/mongodb';
 import axios from 'axios';
 
-
 export default function Home({ isConnected }) {
   const router = useRouter();
-  
+
   const handleSubmit = async (e) => {
     e.preventDefault();
     const username = e.target.user.value;
@@ -21,7 +20,7 @@ export default function Home({ isConnected }) {
       });
       localStorage.setItem('isLogged', 'true');
       localStorage.setItem('username', username);
-      router.push('/dashboard');
+      router.push('/main/dashboard');
     } catch (error) {
       localStorage.setItem('isLogged', '');
     }
@@ -44,7 +43,7 @@ export default function Home({ isConnected }) {
               label="Password"
               variant="outlined"
               type="password"
-              />
+            />
             {isConnected ? (
               <Alert severity="success">DB connected!</Alert>
             ) : (
