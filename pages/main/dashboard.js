@@ -4,6 +4,20 @@ import styles from '../../styles/Dashboard.module.css';
 import Head from 'next/head';
 import { Button, TextField, Paper, Alert } from '@mui/material';
 
+
+const getCurrentForecast = async (e) => {
+  e.preventDefault();
+  const city = 'Canoas,BR';
+  try {
+    await axios.post(`${window.location.origin}/api/forecast/currentWeather`, {
+      city,
+    });
+    console.log('success');
+  } catch (error) {
+    console.error(error);
+  }
+};
+
 const dashboard = () => {
   return (
     <div className={styles.container}>

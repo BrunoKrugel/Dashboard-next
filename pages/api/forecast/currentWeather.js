@@ -5,7 +5,7 @@ export default async function handler(req, res) {
         method: 'GET',
         url: 'https://community-open-weather-map.p.rapidapi.com/weather',
         params: {
-            q: 'Canoas,BR',
+            q: req.body.city,
             callback: 'test',
             lang: 'null',
             units: 'metric',
