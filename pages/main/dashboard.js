@@ -60,15 +60,13 @@ export default function Dashboard() {
             <label className={styles.currentWeather} id="currentWeather">
               {weather}
             </label>
-
             <Image
                 alt="Weather Icon."
                 src={`https://openweathermap.org/img/wn/${icon}@4x.png`}
                 width={100}
                 height={100}
                 layout="responsive"
-            />
-
+                />
           </Paper>
         </Paper>
       </main>
