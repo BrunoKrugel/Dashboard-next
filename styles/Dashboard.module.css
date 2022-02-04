@@ -35,6 +35,7 @@
     margin: 1rem;
     padding: 1.5rem;
     display: flex;
+    width: fit-content;
     flex-direction: column;
     gap: .5rem;
     background: #6165F8;
@@ -47,4 +48,10 @@
 
 .widget button, .widget a {
     width: 100%;
+}
+
+.currentTemp {
+    font-size: 1.5rem;
+    font-weight: bold;
+    font-family: 'Roboto', sans-serif;
 }
