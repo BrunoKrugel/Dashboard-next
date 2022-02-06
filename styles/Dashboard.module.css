@@ -41,6 +41,7 @@
     background: #6165F8;
     align-content: center;
     flex-direction: column;
+    border-radius: 15px;
 }
 
 .widget>div {
@@ -52,7 +53,15 @@
     width: 100%;
 }
 
+.divWeather {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
 .currentTemp {
-    font-size: 1.5rem;
+    font-size: 3rem;
     font-weight: bold;
+    color: #fff;
 }

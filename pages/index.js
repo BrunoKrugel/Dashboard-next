@@ -30,7 +30,7 @@ export default function Home({ isConnected }) {
     <div className={styles.container}>
       <Head>
         <title>Dashboard Weather</title>
-        <meta name="description" content="Dashboard Weather" />
+        <meta name="description" content="Login Page" />
         <link rel="icon" href="/favicon.ico" />
       </Head>
 
@@ -51,10 +51,10 @@ export default function Home({ isConnected }) {
             )}
             <div>
               <Button type="submit" variant="contained">
-                Login
+                Entrar
               </Button>
               <Link href="/auth/createUser" passHref>
-                <Button variant="outlined">Sign in</Button>
+                <Button variant="outlined">Registrar</Button>
               </Link>
             </div>
           </Paper>
