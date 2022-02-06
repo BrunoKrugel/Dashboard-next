@@ -1,11 +1,11 @@
 import React, { useEffect } from 'react';
-import Link from 'next/link';
 import styles from '../../styles/Dashboard.module.css';
 import Head from 'next/head';
 import { Button, TextField, Paper, Alert } from '@mui/material';
 import axios from 'axios';
 import Image from 'next/image';
 import toUpper from '../../lib/toUpper';
+import PlaceIcon from '@mui/icons-material/Place';
 
 export default function Dashboard() {
   // Build weather data
@@ -13,13 +13,14 @@ export default function Dashboard() {
   const [city, setCity] = React.useState('');
   const [weather, setWeather] = React.useState('');
   const [icon, setIcon] = React.useState('');
+  const [umidity, setUmidity] = React.useState('');
+  const [wind, setWind] = React.useState('');
   var localWeather;
 
   // Build date
   let currentDate = new Date();
   let cDay = currentDate.getDate();
   let monthName = currentDate.toLocaleString('default', { month: 'long' });
-  //monthName = monthName.charAt(0).toUpperCase() + monthName.slice(1);
   monthName = toUpper(monthName);
   let currentDateFormat = cDay + ' de ' + monthName;
 
@@ -38,6 +39,8 @@ export default function Dashboard() {
       setCity(localWeather.name);
       setWeather(toUpper(localWeather.weather[0].description));
       setIcon(localWeather.weather[0].icon);
+      setUmidity(localWeather.main.humidity);
+      setWind(localWeather.wind.speed);
     } catch (error) {
       console.log('error');
     }
@@ -57,9 +60,12 @@ export default function Dashboard() {
       </Head>
       <main className={styles.main}>
         <Paper className={styles.card} elevation={3}>
-          <label className={styles.currentCity} id="currentCity">
-            {city}, {currentDateFormat}
-          </label>
+          <div>
+            <PlaceIcon></PlaceIcon>
+            <label className={styles.currentCity} id="currentCity">
+              {city}, {currentDateFormat}
+            </label>
+          </div>
           <div className={styles.widget}>
             <Image
               alt="Weather Icon."
@@ -77,6 +83,15 @@ export default function Dashboard() {
                 {weather}
               </label>
             </div>
+          </div>
+
+          <div className={styles.widgetExtraInfo}>
+            <label className={styles.currentUmidity} id="currentUmidity">
+              Umidade | {umidity}%
+            </label>
+            <label className={styles.currentWind} id="currentWind">
+              Ventos        |{wind} km/h
+            </label>
           </div>
         </Paper>
       </main>

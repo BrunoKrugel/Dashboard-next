@@ -38,7 +38,7 @@
     padding: 1.5rem;
     width: fit-content;
     justify-content: center;
-    background: #6165F8;
+    background: #86AEFF;
     align-content: center;
     flex-direction: column;
     border-radius: 15px;
@@ -58,6 +58,24 @@
     flex-direction: column;
     justify-content: center;
     align-items: center;
+}
+
+.widgetExtraInfo {
+    gap: .5rem;
+    margin: 1rem;
+    display: flex;
+    padding: 1.5rem;
+    width: fit-content;
+    justify-content: center;
+    align-content: center;
+    flex-direction: column;
+    border-radius: 15px;
+    background: #FF7DAD;
+}
+
+.currentCity {
+    font-size: 1.5rem;
+    font-weight: bold;  
 }
 
 .currentTemp {
