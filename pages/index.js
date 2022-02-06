@@ -37,10 +37,10 @@ export default function Home({ isConnected }) {
       <main className={styles.main}>
         <form onSubmit={handleSubmit}>
           <Paper className={styles.card} elevation={3}>
-            <TextField id="user" label="User" variant="outlined" />
+            <TextField id="user" label="Usuário" variant="outlined" />
             <TextField
               id="password"
-              label="Password"
+              label="Senha"
               variant="outlined"
               type="password"
             />

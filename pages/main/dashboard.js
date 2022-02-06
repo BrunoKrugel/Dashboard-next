@@ -90,7 +90,7 @@ export default function Dashboard() {
               Umidade | {umidity}%
             </label>
             <label className={styles.currentWind} id="currentWind">
-              Ventos        |{wind} km/h
+              Ventos |{wind} km/h
             </label>
           </div>
         </Paper>
