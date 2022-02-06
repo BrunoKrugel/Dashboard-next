@@ -1,6 +1,7 @@
 import React from 'react';
 import Link from 'next/link';
 import styles from '../../styles/Home.module.css';
+import Head from 'next/head'
 import { Button, TextField, Paper, Alert } from '@mui/material';
 
   const handleSubmit = async (e) => {
@@ -11,12 +12,12 @@ import { Button, TextField, Paper, Alert } from '@mui/material';
 const createUser = () => {
   return (
     <div className={styles.container}>
-      <main className={styles.main}>
+      <Head className={styles.main}>
         <title>Criar usuario</title>
         <meta name="description" content="Dashboard" />
         <link rel="icon" href="/favicon.ico" />
-      </main>
-
+      </Head>
+      <main className={styles.main}>
       <form onSubmit={handleSubmit}>
         <Paper className={styles.card} elevation={3}>
           <TextField id="user" label="Usuário" variant="outlined" />
@@ -37,6 +38,7 @@ const createUser = () => {
           </div>
         </Paper>
       </form>
+      </main>
     </div>
   );
 };
