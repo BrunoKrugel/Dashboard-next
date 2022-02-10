@@ -73,6 +73,10 @@
     background: #FF7DAD;
 }
 
+.widgetWindInfo{
+
+}
+
 .currentCity {
     font-size: 1.5rem;
     font-weight: bold;  
@@ -80,6 +84,18 @@
 
 .currentTemp {
     font-size: 3rem;
+    font-weight: bold;
+    color: #fff;
+}
+
+.currentWind{
+    font-size: 1.5rem;
+    font-weight: bold;
+    color: #fff;
+}
+
+.currentHumidity{
+    font-size: 1.5rem;
     font-weight: bold;
     color: #fff;
 }

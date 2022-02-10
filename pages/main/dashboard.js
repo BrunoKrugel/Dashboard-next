@@ -7,6 +7,9 @@ import Image from 'next/image';
 import toUpper from '../../lib/toUpper';
 import PlaceIcon from '@mui/icons-material/Place';
 
+import humidityPic from '../../public/widget/humidity.png';
+import windPic from '../../public/widget/wind.png';
+
 export default function Dashboard() {
   // Build weather data
   const [temp, setTemp] = React.useState('');
@@ -86,12 +89,31 @@ export default function Dashboard() {
           </div>
 
           <div className={styles.widgetExtraInfo}>
-            <label className={styles.currentUmidity} id="currentUmidity">
-              Umidade | {umidity}%
-            </label>
-            <label className={styles.currentWind} id="currentWind">
-              Ventos |{wind} km/h
-            </label>
+            <div className={styles.widgetHumidityInfoItem}>
+              <Image
+                alt="Weather Icon."
+                src={humidityPic}
+                width={30}
+                height={30}
+                layout="fixed"
+              />
+              <label className={styles.currentHumidity} id="currentUmidity">
+                {umidity}%
+              </label>
+            </div>
+
+            <div className={styles.widgetWindInfo}>
+              <Image
+                alt="Weather Icon."
+                src={windPic}
+                width={30}
+                height={30}
+                layout="fixed"
+              />
+              <label className={styles.currentWind} id="currentWind">
+                {wind} km/h
+              </label>
+            </div>
           </div>
         </Paper>
       </main>
