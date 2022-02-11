@@ -89,7 +89,7 @@ export default function Dashboard() {
           </div>
 
           <div className={styles.widgetExtraInfo}>
-            <div className={styles.widgetHumidityInfoItem}>
+            <div>
               <Image
                 alt="Weather Icon."
                 src={humidityPic}
@@ -102,7 +102,8 @@ export default function Dashboard() {
               </label>
             </div>
 
-            <div className={styles.widgetWindInfo}>
+            <div>
+
               <Image
                 alt="Weather Icon."
                 src={windPic}
@@ -110,9 +111,11 @@ export default function Dashboard() {
                 height={30}
                 layout="fixed"
               />
+
               <label className={styles.currentWind} id="currentWind">
                 {wind} km/h
               </label>
+
             </div>
           </div>
         </Paper>
