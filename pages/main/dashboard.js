@@ -98,7 +98,7 @@ export default function Dashboard() {
                 layout="fixed"
               />
               <label className={styles.currentHumidity} id="currentUmidity">
-                {umidity}%
+                {umidity} %
               </label>
             </div>
 
@@ -113,7 +113,7 @@ export default function Dashboard() {
               />
 
               <label className={styles.currentWind} id="currentWind">
-                {wind}Km/h
+                {wind} km/h
               </label>
 
             </div>
