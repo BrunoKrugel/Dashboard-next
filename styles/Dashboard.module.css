@@ -80,7 +80,7 @@
 .widgetExtraInfo > div {
     display: flex;
     gap: .5rem;
-    justify-content: space-between;
+    justify-content: center;
     align-content: center;
 }
 

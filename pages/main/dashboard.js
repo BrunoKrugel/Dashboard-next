@@ -7,7 +7,7 @@ import Image from 'next/image';
 import toUpper from '../../lib/toUpper';
 import PlaceIcon from '@mui/icons-material/Place';
 
-import humidityPic from '../../public/widget/humidity.png';
+import humidityPic from '../../public/widget/humidity_2.png';
 import windPic from '../../public/widget/wind.png';
 
 export default function Dashboard() {
@@ -113,7 +113,7 @@ export default function Dashboard() {
               />
 
               <label className={styles.currentWind} id="currentWind">
-                {wind} km/h
+                {wind}Km/h
               </label>
 
             </div>
