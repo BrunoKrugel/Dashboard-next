@@ -7,8 +7,11 @@ import Image from 'next/image';
 import toUpper from '../../lib/toUpper';
 import PlaceIcon from '@mui/icons-material/Place';
 
+//Images
 import humidityPic from '../../public/widget/humidity_2.png';
 import windPic from '../../public/widget/wind.png';
+import sunsetPic from '../../public/widget/sunset.png';
+import sunrisePic from '../../public/widget/sunrise.png';
 
 export default function Dashboard() {
   // Build weather data
@@ -18,6 +21,8 @@ export default function Dashboard() {
   const [icon, setIcon] = React.useState('');
   const [umidity, setUmidity] = React.useState('');
   const [wind, setWind] = React.useState('');
+  const [sunrise, setSunrise] = React.useState('');
+  const [sunset, setSunset] = React.useState('');
   var localWeather;
 
   // Build date
@@ -44,6 +49,8 @@ export default function Dashboard() {
       setIcon(localWeather.weather[0].icon);
       setUmidity(localWeather.main.humidity);
       setWind(localWeather.wind.speed);
+      setSunrise(new Date(localWeather.sys.sunrise).toLocaleTimeString(localWeather.sys.country));
+      setSunset(new Date(localWeather.sys.sunset).toLocaleTimeString());
     } catch (error) {
       console.log('error');
     }
@@ -91,7 +98,7 @@ export default function Dashboard() {
           <div className={styles.widgetExtraInfo}>
             <div>
               <Image
-                alt="Weather Icon."
+                alt="Humidity Icon."
                 src={humidityPic}
                 width={30}
                 height={30}
@@ -105,7 +112,7 @@ export default function Dashboard() {
             <div>
 
               <Image
-                alt="Weather Icon."
+                alt="Wind Icon."
                 src={windPic}
                 width={30}
                 height={30}
@@ -118,6 +125,37 @@ export default function Dashboard() {
 
             </div>
           </div>
+
+
+
+          <div className={styles.widgetSunInfo}>
+            <div>
+              <Image
+                alt="Sun rise Icon."
+                src={sunrisePic}
+                width={30}
+                height={30}
+                layout="fixed"
+              />
+              <label className={styles.currentWind} id="currentWind">
+                {sunrise}
+              </label>
+            </div>
+
+            <div>
+              <Image
+                alt="Sun set Icon."
+                src={sunsetPic}
+                width={30}
+                height={30}
+                layout="fixed"
+              />
+              <label className={styles.currentWind} id="currentWind">
+                {sunset}
+              </label>
+            </div>            
+          </div>
+
         </Paper>
       </main>
     </div>

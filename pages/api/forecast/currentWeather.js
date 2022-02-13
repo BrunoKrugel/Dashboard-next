@@ -7,7 +7,7 @@ export default async function handler(req, res) {
     params: {
       q: req.body.city,
       callback: 'test',
-      lang: 'pt',
+      lang: 'pt_br',
       units: 'metric',
       mode: 'xml',
     },
