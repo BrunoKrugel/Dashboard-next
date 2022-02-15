@@ -7,7 +7,7 @@ export default async function handler(req, res) {
         method: 'GET',
         url: 'https://community-open-weather-map.p.rapidapi.com/climate/month',
         params: {
-            q: 'San Francisco'
+            q: req.body.city,
         },
         headers: {
             'x-rapidapi-host': 'community-open-weather-map.p.rapidapi.com',
