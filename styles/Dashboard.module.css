@@ -93,6 +93,13 @@
     background: linear-gradient(to bottom right,#FFE2A3, #FFB662);
 }
 
+.widgetSunInfo > div {
+    display: flex;
+    gap: .5rem;
+    justify-content: space-between;
+    align-content: space-around;
+}
+
 .currentCity {
     font-size: 1.5rem;
     font-weight: bold;  

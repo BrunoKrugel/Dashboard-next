@@ -4,8 +4,6 @@ import Head from 'next/head';
 import { Button, TextField, Paper, Alert } from '@mui/material';
 import axios from 'axios';
 import Image from 'next/image';
-import toUpper from '../../lib/toUpper';
-import { unixToStamp } from '../../lib/unixTime';
 import PlaceIcon from '@mui/icons-material/Place';
 
 //Images
@@ -13,6 +11,9 @@ import humidityPic from '../../public/widget/humidity_2.png';
 import windPic from '../../public/widget/wind.png';
 import sunsetPic from '../../public/widget/sunset.png';
 import sunrisePic from '../../public/widget/sunrise.png';
+
+const unixToStampUTC = require('../../lib/unixTime');
+const toUpper = require('../../lib/toUpper');
 
 export default function Dashboard() {
   // Build weather data
@@ -50,8 +51,12 @@ export default function Dashboard() {
       setIcon(localWeather.weather[0].icon);
       setUmidity(localWeather.main.humidity);
       setWind(localWeather.wind.speed);
-      setSunrise(localWeather.sys.sunrise);
-      setSunset(localWeather.sys.sunset);
+      setSunrise(
+        unixToStampUTC(localWeather.sys.sunrise, localWeather.sys.country)
+      );
+      setSunset(
+        unixToStampUTC(localWeather.sys.sunset, localWeather.sys.country)
+      );
     } catch (error) {
       console.log('error');
     }
@@ -111,7 +116,6 @@ export default function Dashboard() {
             </div>
 
             <div>
-
               <Image
                 alt="Wind Icon."
                 src={windPic}
@@ -123,11 +127,8 @@ export default function Dashboard() {
               <label className={styles.currentWind} id="currentWind">
                 {wind} km/h
               </label>
-
             </div>
           </div>
-
-
 
           <div className={styles.widgetSunInfo}>
             <div>
@@ -154,9 +155,8 @@ export default function Dashboard() {
               <label className={styles.currentWind} id="currentWind">
                 {sunset}
               </label>
-            </div>            
+            </div>
           </div>
-
         </Paper>
       </main>
     </div>
