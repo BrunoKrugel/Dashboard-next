@@ -1,5 +1,5 @@
-const { unixToStamp } = require('../lib/unixTime').default;
+const unixToStamp = require('../lib/unixTime');
 
-test('TEST', () => {
-    expect(unixToStamp('1644564141')).toBe('1644564141');
+test('adds 1 + 2 to equal 3', () => {
+  expect(unixToStamp('1644564141')).toBe('1644564141');
 });
