@@ -52,10 +52,10 @@ export default function Dashboard() {
       setUmidity(localWeather.main.humidity);
       setWind(localWeather.wind.speed);
       setSunrise(
-        unixToStampUTC(localWeather.sys.sunrise, localWeather.sys.country)
+        unixToStampUTC(localWeather.sys.sunrise)
       );
       setSunset(
-        unixToStampUTC(localWeather.sys.sunset, localWeather.sys.country)
+        unixToStampUTC(localWeather.sys.sunset)
       );
     } catch (error) {
       console.log('error');
