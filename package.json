@@ -20,6 +20,7 @@
     "babel-jest": "^27.5.1",
     "dotenv": "^15.0.0",
     "eslint-config-prettier": "^8.3.0",
+    "moment": "^2.29.1",
     "mongodb": "^4.3.1",
     "next": "12.0.10",
     "prettier": "^2.5.1",
