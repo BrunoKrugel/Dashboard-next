@@ -5,6 +5,7 @@ import { Button, TextField, Paper, Alert } from '@mui/material';
 import axios from 'axios';
 import Image from 'next/image';
 import toUpper from '../../lib/toUpper';
+import { unixToStamp } from '../../lib/unixTime';
 import PlaceIcon from '@mui/icons-material/Place';
 
 //Images
@@ -49,8 +50,8 @@ export default function Dashboard() {
       setIcon(localWeather.weather[0].icon);
       setUmidity(localWeather.main.humidity);
       setWind(localWeather.wind.speed);
-      setSunrise(new Date(localWeather.sys.sunrise).toLocaleTimeString(localWeather.sys.country));
-      setSunset(new Date(localWeather.sys.sunset).toLocaleTimeString());
+      setSunrise(localWeather.sys.sunrise);
+      setSunset(localWeather.sys.sunset);
     } catch (error) {
       console.log('error');
     }
