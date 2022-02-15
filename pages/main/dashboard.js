@@ -20,7 +20,7 @@ const toUpper = require('../../lib/toUpper');
 export default function Dashboard() {
   // Build weather data
   const [temp, setTemp] = React.useState('');
-  const [city, setCity] = React.useState('');
+  const [cityName, setCityName] = React.useState('');
   const [weather, setWeather] = React.useState('');
   const [icon, setIcon] = React.useState('');
   const [umidity, setUmidity] = React.useState('');
@@ -48,7 +48,7 @@ export default function Dashboard() {
       localWeather = res.data.replace(/test\(/g, '').replace(/\)/g, '');
       localWeather = JSON.parse(localWeather);
       setTemp(localWeather.main.temp.toFixed(1));
-      setCity(localWeather.name);
+      setCityName(localWeather.name);
       setWeather(toUpper(localWeather.weather[0].description));
       setIcon(localWeather.weather[0].icon);
       setUmidity(localWeather.main.humidity);
@@ -82,7 +82,7 @@ export default function Dashboard() {
           <div>
             <PlaceIcon></PlaceIcon>
             <label className={styles.currentCity} id="currentCity">
-              {city}, {currentDateFormat}
+              {cityName}, {currentDateFormat}
             </label>
           </div>
           <div className={styles.widget}>
