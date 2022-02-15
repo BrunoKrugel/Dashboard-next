@@ -12,7 +12,9 @@ import windPic from '../../public/widget/wind.png';
 import sunsetPic from '../../public/widget/sunset.png';
 import sunrisePic from '../../public/widget/sunrise.png';
 
+//Snippets
 const unixToStampUTC = require('../../lib/unixTime');
+const getTimeZone = require('../../lib/timeZone');
 const toUpper = require('../../lib/toUpper');
 
 export default function Dashboard() {
@@ -57,6 +59,7 @@ export default function Dashboard() {
       setSunset(
         unixToStampUTC(localWeather.sys.sunset)
       );
+      console.log(getTimeZone(localWeather.coord.lat, localWeather.coord.lon));
     } catch (error) {
       console.log('error');
     }

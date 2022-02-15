@@ -1,4 +1,4 @@
-const { unixToStampUTC, unixToStampCurrentTZ } = require('../lib/unixTime');
+const { unixToStampUTC, currentTimeZone } = require('../lib/unixTime');
 
 //https://www.epochconverter.com/
 test('Test Unix time converter in UTC', () => {
