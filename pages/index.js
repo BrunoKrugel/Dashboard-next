@@ -4,7 +4,6 @@ import Image from 'next/image';
 import Link from 'next/link';
 import { Button, TextField, Paper, Alert } from '@mui/material';
 
-
 import logo from '../public/logo/HortaOn.png';
 
 export default function Home() {
@@ -12,8 +11,8 @@ export default function Home() {
     <div className={styles.container}>
       <Head>
         <title>Dashboard Weather</title>
-        <meta name="description" content="Login Page" />
-        <link rel="icon" href="/favicon.ico" />
+        <meta name="description" content="Horta On!" />
+        <link rel="icon" href="/cloudy.png" />
       </Head>
 
       <main className={styles.main}>

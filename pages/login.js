@@ -31,7 +31,7 @@ export default function Home({ isConnected }) {
       <Head>
         <title>Dashboard Weather</title>
         <meta name="description" content="Login Page" />
-        <link rel="icon" href="/favicon.ico" />
+        <link rel="icon" href="/cloudy.png" />
       </Head>
 
       <main className={styles.main}>
