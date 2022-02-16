@@ -53,12 +53,8 @@ export default function Dashboard() {
       setIcon(localWeather.weather[0].icon);
       setUmidity(localWeather.main.humidity);
       setWind(localWeather.wind.speed);
-      setSunrise(
-        unixToStampUTC(localWeather.sys.sunrise)
-      );
-      setSunset(
-        unixToStampUTC(localWeather.sys.sunset)
-      );
+      setSunrise(unixToStampUTC(localWeather.sys.sunrise));
+      setSunset(unixToStampUTC(localWeather.sys.sunset));
       console.log(getTimeZone(localWeather.coord.lat, localWeather.coord.lon));
     } catch (error) {
       console.log('error');
