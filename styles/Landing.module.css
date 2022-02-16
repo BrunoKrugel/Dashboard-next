@@ -1,0 +1,124 @@
+.container {
+    padding: 0 2rem;
+}
+
+.main {
+    min-height: 100vh;
+    padding: 4rem 0;
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+  }
+
+.card {
+    margin: 1rem;
+    padding: 1.5rem;
+    display: flex;
+    flex-direction: column;
+    width: 450px;
+    gap: .5rem;
+}
+
+
+.card>div {
+    display: flex;
+    gap: .5rem;
+}
+
+.card button, .card a {
+    width: 100%;
+}
+
+.widget {
+    gap: .5rem;
+    margin: 1rem;
+    display: flex;
+    padding: 1.5rem;
+    width: fit-content;
+    justify-content: center;
+    background: linear-gradient(to bottom right, #99C3FF, #86AEFF);
+    align-content: center;
+    flex-direction: column;
+    border-radius: 15px;
+}
+
+.widget>div {
+    display: flex;
+    gap: .5rem;
+}
+
+.widget button, .widget a {
+    width: 100%;
+}
+
+.divWeather {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.widgetExtraInfo {
+    gap: .5rem;
+    margin: 1rem;
+    display: flex;
+    padding: 1.5rem;
+    width: fit-content;
+    justify-content: center;
+    align-content: center;
+    flex-direction: column;
+    border-radius: 15px;
+    background: linear-gradient(to bottom right, #FFA8E9, #FF7DAD);
+}
+
+.widgetExtraInfo > div {
+    display: flex;
+    gap: .5rem;
+    justify-content: space-between;
+    align-content: center;
+}
+
+.widgetSunInfo {
+    gap: .5rem;
+    margin: 1rem;
+    display: flex;
+    padding: 1.5rem;
+    width: fit-content;
+    justify-content: center;
+    align-content: center;
+    flex-direction: column;
+    border-radius: 15px;
+    background: linear-gradient(to bottom right,#FFE2A3, #FFB662);
+}
+
+.widgetSunInfo > div {
+    display: flex;
+    gap: .5rem;
+    justify-content: space-between;
+    align-content: space-around;
+}
+
+.currentCity {
+    font-size: 1.5rem;
+    font-weight: bold;  
+}
+
+.currentTemp {
+    font-size: 3rem;
+    font-weight: bold;
+    color: #fff;
+}
+
+.currentWind{
+    font-size: 1.5rem;
+    font-weight: bold;
+    color: #fff;
+}
+
+.currentHumidity{
+    font-size: 1.5rem;
+    font-weight: bold;
+    color: #fff;
+}

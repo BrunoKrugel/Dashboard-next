@@ -1,5 +1,5 @@
 import Head from 'next/head';
-import styles from '../styles/Home.module.css';
+import styles from '../styles/Landing.module.css';
 import Image from 'next/image';
 import Link from 'next/link';
 import { Button, TextField, Paper, Alert } from '@mui/material';
