@@ -17,7 +17,7 @@
     padding: 1.5rem;
     display: flex;
     flex-direction: column;
-    width: 950px;
+    width: 1000px;
     gap: .5rem;
 }
 
@@ -121,4 +121,14 @@
     font-size: 1.5rem;
     font-weight: bold;
     color: #fff;
+}
+
+.week {
+    gap: .5rem;
+    margin: .5rem;
+    display: flex;
+    padding: 1rem;
+    width: fit-content;
+    flex-direction: column;
+    border-radius: 15px;
 }

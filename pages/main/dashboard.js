@@ -1,10 +1,12 @@
 import React, { useEffect } from 'react';
 import styles from '../../styles/Dashboard.module.css';
 import Head from 'next/head';
-import { Button, TextField, Paper, Alert } from '@mui/material';
+import { Button, TextField, Paper, Alert, Stack } from '@mui/material';
 import axios from 'axios';
 import Image from 'next/image';
 import PlaceIcon from '@mui/icons-material/Place';
+
+import { styled } from '@mui/material/styles';
 
 //Images
 import humidityPic from '../../public/widget/humidity_2.png';
@@ -17,6 +19,14 @@ const unixToStampUTC = require('../../lib/unixTime');
 const getTimeZone = require('../../lib/timeZone');
 const toUpper = require('../../lib/toUpper');
 
+const Item = styled(Paper)(({ theme }) => ({
+  backgroundColor: theme.palette.mode === 'dark' ? '#1A2027' : '#fff',
+  ...theme.typography.body2,
+  padding: theme.spacing(1),
+  textAlign: 'center',
+  color: theme.palette.text.secondary,
+}));
+
 export default function Dashboard() {
   // Build weather data
   const [temp, setTemp] = React.useState('');
@@ -27,7 +37,27 @@ export default function Dashboard() {
   const [wind, setWind] = React.useState('');
   const [sunrise, setSunrise] = React.useState('');
   const [sunset, setSunset] = React.useState('');
-  var localWeather;
+
+  // Week information
+  const [weekTempDayOne, setWeekTempDayOne] = React.useState('');
+  const [weekIconDayOne, setWeekIconDayOne] = React.useState('');
+
+  const [weekTempDayTwo, setWeekTempDayTwo] = React.useState('');
+  const [weekIconDayTwo, setWeekIconDayTwo] = React.useState('');
+
+  const [weekTempDayThree, setWeekTempDayThree] = React.useState('');
+  const [weekIconDayThree, setWeekIconDayThree] = React.useState('');
+
+  const [weekTempDayFour, setWeekTempDayFour] = React.useState('');
+  const [weekIconDayFour, setWeekIconDayFour] = React.useState('');
+
+  const [weekTempDayFive, setWeekTempDayFive] = React.useState('');
+  const [weekIconDayFive, setWeekIconDayFive] = React.useState('');
+
+  const [weekTempDaySix, setWeekTempDaySix] = React.useState('');
+  const [weekIconDaySix, setWeekIconDaySix] = React.useState('');
+
+  var localWeather, weekforecast;
 
   // Build date
   let currentDate = new Date();
@@ -38,7 +68,6 @@ export default function Dashboard() {
 
   const getCurrentForecast = async (city) => {
     try {
-      console.log('getCurrentForecast');
       const res = await axios.post(
         `${window.location.origin}/api/forecast/currentWeather`,
         {
@@ -47,7 +76,7 @@ export default function Dashboard() {
       );
       localWeather = res.data.replace(/test\(/g, '').replace(/\)/g, '');
       localWeather = JSON.parse(localWeather);
-      setTemp(localWeather.main.temp.toFixed(1));
+      setTemp(localWeather.main.temp.toFixed(0));
       setCityName(localWeather.name);
       setWeather(toUpper(localWeather.weather[0].description));
       setIcon(localWeather.weather[0].icon);
@@ -55,16 +84,54 @@ export default function Dashboard() {
       setWind(localWeather.wind.speed);
       setSunrise(unixToStampUTC(localWeather.sys.sunrise));
       setSunset(unixToStampUTC(localWeather.sys.sunset));
-      console.log(getTimeZone(localWeather.coord.lat, localWeather.coord.lon));
     } catch (error) {
-      console.log('error');
+      console.log(error);
     }
   };
 
-  React.useEffect(() => {
-    if (!temp) getCurrentForecast('Canoas,BR');
+  const getForecastWeek = async (city) => {
+    try {
+      //Forecast for the week
+      const resWeek = await axios.post(
+        `${window.location.origin}/api/forecast/forecastWeek`,
+        {
+          city,
+        }
+      );
+      console.log(resWeek.data.list);
+      weekforecast = resWeek.data.list;
+
+      //Set week data
+      setWeekTempDayOne(weekforecast[0].temp.day.toFixed(0));
+      setWeekIconDayOne(weekforecast[0].weather[0].icon);
+
+      setWeekTempDayTwo(weekforecast[1].temp.day.toFixed(0));
+      setWeekIconDayTwo(weekforecast[1].weather[0].icon);
+
+      setWeekTempDayThree(weekforecast[2].temp.day.toFixed(0));
+      setWeekIconDayThree(weekforecast[2].weather[0].icon);
+
+      setWeekTempDayFour(weekforecast[3].temp.day.toFixed(0));
+      setWeekIconDayFour(weekforecast[3].weather[0].icon);
+
+      setWeekTempDayFive(weekforecast[4].temp.day.toFixed(0));
+      setWeekIconDayFive(weekforecast[4].weather[0].icon);
+
+      setWeekTempDaySix(weekforecast[5].temp.day.toFixed(0));
+      setWeekIconDaySix(weekforecast[5].weather[0].icon);
+    } catch (error) {
+      console.log(error);
+    }
+  };
+
+  React.useEffect(
+    () => {
+      if (!temp) getCurrentForecast('Canoas,BR');
+      if (!weekTempDayOne) getForecastWeek('Canoas,BR');
+    },
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [temp]);
+    [temp, weekTempDayOne]
+  );
 
   return (
     <div className={styles.container}>
@@ -81,79 +148,155 @@ export default function Dashboard() {
               {cityName}, {currentDateFormat}
             </label>
           </div>
-          <div className={styles.widget}>
-            <Image
-              alt="Weather Icon."
-              src={`https://openweathermap.org/img/wn/${icon}@4x.png`}
-              width={100}
-              height={100}
-              layout="responsive"
-            />
 
-            <div className={styles.divWeather}>
-              <label className={styles.currentTemp} id="currentTemp">
-                {temp}°C
-              </label>
-              <label className={styles.currentWeather} id="currentWeather">
-                {weather}
-              </label>
+          <div>
+            <div className={styles.widget}>
+              <Image
+                alt="Weather Icon."
+                src={`https://openweathermap.org/img/wn/${icon}@4x.png`}
+                width={150}
+                height={150}
+                layout="fixed"
+              />
+
+              <div className={styles.divWeather}>
+                <label className={styles.currentTemp} id="currentTemp">
+                  {temp}°C
+                </label>
+                <label className={styles.currentWeather} id="currentWeather">
+                  {weather}
+                </label>
+              </div>
+            </div>
+
+            <div className={styles.week}>
+              <Stack direction="row" spacing={2}>
+                <Item>
+                  <Image
+                    alt="Weather Icon."
+                    src={`https://openweathermap.org/img/wn/${weekIconDayOne}@4x.png`}
+                    width={70}
+                    height={70}
+                    layout="fixed"
+                    priority={true}
+                  />
+                  {weekTempDayOne}°C
+                </Item>
+                <Item>
+                  <Image
+                    alt="Weather Icon."
+                    src={`https://openweathermap.org/img/wn/${weekIconDayTwo}@4x.png`}
+                    width={70}
+                    height={70}
+                    layout="fixed"
+                    priority={true}
+                  />
+                  {weekTempDayTwo}°C
+                </Item>
+                <Item>
+                  <Image
+                    alt="Weather Icon."
+                    src={`https://openweathermap.org/img/wn/${weekIconDayThree}@4x.png`}
+                    width={70}
+                    height={70}
+                    layout="fixed"
+                    priority={true}
+                  />
+                  {weekTempDayThree}°C
+                </Item>
+                <Item>
+                  <Image
+                    alt="Weather Icon."
+                    src={`https://openweathermap.org/img/wn/${weekIconDayFour}@4x.png`}
+                    width={70}
+                    height={70}
+                    layout="fixed"
+                    priority={true}
+                  />
+                  {weekTempDayFour}°C
+                </Item>
+                <Item>
+                  <Image
+                    alt="Weather Icon."
+                    src={`https://openweathermap.org/img/wn/${weekIconDayFive}@4x.png`}
+                    width={70}
+                    height={70}
+                    layout="fixed"
+                    priority={true}
+                  />
+                  {weekTempDayFive}°C
+                </Item>
+                <Item>
+                  <Image
+                    alt="Weather Icon."
+                    src={`https://openweathermap.org/img/wn/${weekIconDaySix}@4x.png`}
+                    width={70}
+                    height={70}
+                    layout="fixed"
+                    priority={true}
+                  />
+                  {weekTempDaySix}°C
+                </Item>
+              </Stack>
             </div>
           </div>
 
-          <div className={styles.widgetExtraInfo}>
-            <div>
-              <Image
-                alt="Humidity Icon."
-                src={humidityPic}
-                width={30}
-                height={30}
-                layout="fixed"
-              />
-              <label className={styles.currentHumidity} id="currentUmidity">
-                {umidity} %
-              </label>
+          <div>
+            <div className={styles.widgetExtraInfo}>
+              <div>
+                <Image
+                  alt="Humidity Icon."
+                  src={humidityPic}
+                  width={30}
+                  height={30}
+                  layout="fixed"
+                />
+                <label className={styles.currentHumidity} id="currentUmidity">
+                  {umidity} %
+                </label>
+              </div>
+
+              <div>
+                <Image
+                  alt="Wind Icon."
+                  src={windPic}
+                  width={30}
+                  height={30}
+                  layout="fixed"
+                />
+
+                <label className={styles.currentWind} id="currentWind">
+                  {wind} km/h
+                </label>
+              </div>
             </div>
 
-            <div>
-              <Image
-                alt="Wind Icon."
-                src={windPic}
-                width={30}
-                height={30}
-                layout="fixed"
-              />
+            <div className={styles.widgetSunInfo}>
+              <div>
+                <Image
+                  alt="Sun rise Icon."
+                  src={sunrisePic}
+                  width={30}
+                  height={30}
+                  layout="fixed"
+                />
+                <label className={styles.currentWind} id="currentWind">
+                  {sunrise}
+                </label>
+              </div>
 
-              <label className={styles.currentWind} id="currentWind">
-                {wind} km/h
-              </label>
-            </div>
-          </div>
-
-          <div className={styles.widgetSunInfo}>
-            <div>
-              <Image
-                alt="Sun rise Icon."
-                src={sunrisePic}
-                width={30}
-                height={30}
-                layout="fixed"
-              />
-              <label className={styles.currentWind} id="currentWind">
-                {sunrise}
-              </label>
-            </div>
-
-            <div>
-              <Image
-                alt="Sun set Icon."
-                src={sunsetPic}
-                width={30}
-                height={30}
-                layout="fixed"
-              />
-              <label className={styles.currentWind} id="currentWind">
-                {sunset}
-              </label>
+              <div>
+                <Image
+                  alt="Sun set Icon."
+                  src={sunsetPic}
+                  width={30}
+                  height={30}
+                  layout="fixed"
+                />
+                <label className={styles.currentWind} id="currentWind">
+                  {sunset}
+                </label>
+              </div>
             </div>
           </div>
         </Paper>
