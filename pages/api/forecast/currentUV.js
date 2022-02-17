@@ -13,8 +13,7 @@ export default async function handler(req, res) {
     },
     headers: {
       'x-access-token': uv,
-      'x-rapidapi-host':
-        'aershov-openuv-global-real-time-uv-index-v1.p.rapidapi.com',
+      'x-rapidapi-host': 'aershov-openuv-global-real-time-uv-index-v1.p.rapidapi.com',
       'x-rapidapi-key': uri,
     },
   };

@@ -13,6 +13,8 @@ import humidityPic from '../../public/widget/humidity_2.png';
 import windPic from '../../public/widget/wind.png';
 import sunsetPic from '../../public/widget/sunset.png';
 import sunrisePic from '../../public/widget/sunrise.png';
+import uvindexPic from '../../public/widget/uv_ray_1.png';
+
 
 //Snippets
 const { unixToStampUTC } = require('../../lib/unixTime');
@@ -33,10 +35,19 @@ export default function Dashboard() {
   const [cityName, setCityName] = React.useState('');
   const [weather, setWeather] = React.useState('');
   const [icon, setIcon] = React.useState('');
+  const [lat, setLat] = React.useState('');
+  const [long, setLong] = React.useState('');
+
+  //Extra info
   const [umidity, setUmidity] = React.useState('');
   const [wind, setWind] = React.useState('');
+
+  //Sun Info
   const [sunrise, setSunrise] = React.useState('');
   const [sunset, setSunset] = React.useState('');
+
+  //UV Index
+  const [uvIndex, setUvIndex] = React.useState('');
 
   // Week information
   const [weekTempDayOne, setWeekTempDayOne] = React.useState('');
@@ -57,7 +68,7 @@ export default function Dashboard() {
   const [weekTempDaySix, setWeekTempDaySix] = React.useState('');
   const [weekIconDaySix, setWeekIconDaySix] = React.useState('');
 
-  var localWeather, weekforecast;
+  var localWeather, weekforecast, uvdata;
 
   // Build date
   let currentDate = new Date();
@@ -76,12 +87,20 @@ export default function Dashboard() {
       );
       localWeather = res.data.replace(/test\(/g, '').replace(/\)/g, '');
       localWeather = JSON.parse(localWeather);
+
+      //Widget Current Temp
       setTemp(localWeather.main.temp.toFixed(0));
       setCityName(localWeather.name);
       setWeather(toUpper(localWeather.weather[0].description));
       setIcon(localWeather.weather[0].icon);
+      setLat(localWeather.coord.lat);
+      setLong(localWeather.coord.lon);
+
+      //Widget Extra info
       setUmidity(localWeather.main.humidity);
       setWind(localWeather.wind.speed);
+
+      //Widget Sun
       setSunrise(unixToStampUTC(localWeather.sys.sunrise));
       setSunset(unixToStampUTC(localWeather.sys.sunset));
     } catch (error) {
@@ -124,13 +143,34 @@ export default function Dashboard() {
     }
   };
 
+  const getUvIndex = async (lat,long) => {
+    try {
+      //Forecast for the week
+      const resWeek = await axios.post(
+        `${window.location.origin}/api/forecast/currentUV`,
+        {
+          lat,
+          long,
+        }
+      );
+      console.log(resWeek.data.list);
+      uvdata = resWeek.data.list;
+
+      //Set week data
+      setWeekTempDayOne(weekforecast[0].temp.day.toFixed(0));
+    } catch (error) {
+      console.log(error);
+    }
+  };
+
   React.useEffect(
     () => {
       if (!temp) getCurrentForecast('Canoas,BR');
       if (!weekTempDayOne) getForecastWeek('Canoas,BR');
+      if (!lat) getUvIndex(lat,long);
     },
     // eslint-disable-next-line react-hooks/exhaustive-deps
-    [temp, weekTempDayOne]
+    [temp, weekTempDayOne, uvIndex, lat]
   );
 
   return (
@@ -298,6 +338,22 @@ export default function Dashboard() {
                 </label>
               </div>
             </div>
+
+            <div className={styles.widgetUVInfo}>
+                <div>
+                  <Image
+                    alt="UV Index Icon."
+                    src={uvindexPic}
+                    width={70}
+                    height={70}
+                    layout="fixed"
+                  />
+                  <label className={styles.currentUV} id="currentWind">
+                    {uvIndex}55%
+                  </label>
+                </div>
+            </div>
+
           </div>
         </Paper>
       </main>
