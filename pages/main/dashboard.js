@@ -15,7 +15,7 @@ import sunsetPic from '../../public/widget/sunset.png';
 import sunrisePic from '../../public/widget/sunrise.png';
 
 //Snippets
-const unixToStampUTC = require('../../lib/unixTime');
+const { unixToStampUTC } = require('../../lib/unixTime');
 const getTimeZone = require('../../lib/timeZone');
 const toUpper = require('../../lib/toUpper');
 
