@@ -41,11 +41,6 @@ export default function Home({ isConnected }) {
     } catch (error) {
       localStorage.setItem('isLogged', '');
       setOpen(true);
-      <Snackbar open={open} autoHideDuration={6000} onClose={handleClose}>
-        <Alert onClose={handleClose} severity="error" sx={{ width: '100%' }}>
-          Usuário ou senha errados.
-        </Alert>
-      </Snackbar>;
       console.log('oi');
     }
   };
@@ -69,9 +64,9 @@ export default function Home({ isConnected }) {
               type="password"
             />
             {isConnected ? (
-              <Alert severity="success">DB connected!</Alert>
+              console.log("DB connected")
             ) : (
-              <Alert severity="error">DB not connected!</Alert>
+              console.log("DB not connected")
             )}
             <div>
               <Button type="submit" variant="contained">
@@ -83,6 +78,11 @@ export default function Home({ isConnected }) {
             </div>
           </Paper>
         </form>
+        <Snackbar open={open} autoHideDuration={6000} onClose={handleClose}>
+          <Alert onClose={handleClose} severity="error" sx={{ width: '100%' }}>
+            Usuário/senha incorretos.
+          </Alert>
+        </Snackbar>
       </main>
     </div>
   );
