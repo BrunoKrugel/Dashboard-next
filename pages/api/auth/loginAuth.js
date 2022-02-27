@@ -25,7 +25,7 @@ export default async function handler(req, res) {
     await isAuthPromise;
     res.status(200).send('Ok');
   } catch (error) {
-    console.log(error);
+    console.log('Login auth error: ' + error);
     res.status(401).send('Usuário ou senha inválidos');
   }
 }

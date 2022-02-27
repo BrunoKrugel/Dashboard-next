@@ -14,7 +14,6 @@ import MenuItem from '@mui/material/MenuItem';
 import Image from 'next/image';
 import Head from 'next/head';
 
-
 import logo from '../public/logo/HortaOn.png';
 
 import styles from '../styles/Landing.module.css';
@@ -28,24 +27,21 @@ const ResponsiveAppBar = () => {
 
   const handleOpenNavMenu = (event) => {
     setAnchorElNav(event.currentTarget);
-    console.log("Open Nav Menu");
+    console.log('Open Nav Menu');
   };
   const handleOpenUserMenu = (event) => {
     setAnchorElUser(event.currentTarget);
-    console.log("Open User Menu");
-
+    console.log('Open User Menu');
   };
 
   const handleCloseNavMenu = () => {
     setAnchorElNav(null);
-    console.log("Close Nav Menu");
-
+    console.log('Close Nav Menu');
   };
 
   const handleCloseUserMenu = () => {
     setAnchorElUser(null);
-    console.log("Close Nav Menu");
-
+    console.log('Close Nav Menu');
   };
 
   return (

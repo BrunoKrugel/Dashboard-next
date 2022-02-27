@@ -1,13 +1,30 @@
 import Head from 'next/head';
+import * as React from 'react';
 import Link from 'next/link';
 import { useRouter } from 'next/router';
 import styles from '../styles/Home.module.css';
-import { Button, TextField, Paper, Alert } from '@mui/material';
+import {
+  Button,
+  TextField,
+  Paper,
+  Alert,
+  Snackbar,
+  MuiAlert,
+} from '@mui/material';
 import clientPromise from '../lib/mongodb';
 import axios from 'axios';
 
 export default function Home({ isConnected }) {
   const router = useRouter();
+  const [open, setOpen] = React.useState(false);
+
+  const handleClose = (event, reason) => {
+    if (reason === 'clickaway') {
+      return;
+    }
+
+    setOpen(false);
+  };
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -23,6 +40,13 @@ export default function Home({ isConnected }) {
       router.push('/main/dashboard');
     } catch (error) {
       localStorage.setItem('isLogged', '');
+      setOpen(true);
+      <Snackbar open={open} autoHideDuration={6000} onClose={handleClose}>
+        <Alert onClose={handleClose} severity="error" sx={{ width: '100%' }}>
+          Usuário ou senha errados.
+        </Alert>
+      </Snackbar>;
+      console.log('oi');
     }
   };
 

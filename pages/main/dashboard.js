@@ -15,7 +15,6 @@ import sunsetPic from '../../public/widget/sunset.png';
 import sunrisePic from '../../public/widget/sunrise.png';
 import uvindexPic from '../../public/widget/uv_ray_1.png';
 
-
 //Snippets
 const { unixToStampUTC } = require('../../lib/unixTime');
 const getTimeZone = require('../../lib/timeZone');
@@ -143,7 +142,7 @@ export default function Dashboard() {
     }
   };
 
-  const getUvIndex = async (lat,long) => {
+  const getUvIndex = async (lat, long) => {
     try {
       //Forecast for the week
       const resWeek = await axios.post(
@@ -167,7 +166,7 @@ export default function Dashboard() {
     () => {
       if (!temp) getCurrentForecast('Canoas,BR');
       if (!weekTempDayOne) getForecastWeek('Canoas,BR');
-      if (!lat) getUvIndex(lat,long);
+      if (!lat) getUvIndex(lat, long);
     },
     // eslint-disable-next-line react-hooks/exhaustive-deps
     [temp, weekTempDayOne, uvIndex, lat]
@@ -340,20 +339,19 @@ export default function Dashboard() {
             </div>
 
             <div className={styles.widgetUVInfo}>
-                <div>
-                  <Image
-                    alt="UV Index Icon."
-                    src={uvindexPic}
-                    width={70}
-                    height={70}
-                    layout="fixed"
-                  />
-                  <label className={styles.currentUV} id="currentWind">
-                    {uvIndex}55%
-                  </label>
-                </div>
+              <div>
+                <Image
+                  alt="UV Index Icon."
+                  src={uvindexPic}
+                  width={70}
+                  height={70}
+                  layout="fixed"
+                />
+                <label className={styles.currentUV} id="currentWind">
+                  {uvIndex}55%
+                </label>
+              </div>
             </div>
-
           </div>
         </Paper>
       </main>
