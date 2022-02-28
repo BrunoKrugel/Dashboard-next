@@ -9,7 +9,6 @@ import {
   Paper,
   Alert,
   Snackbar,
-  MuiAlert,
 } from '@mui/material';
 import clientPromise from '../lib/mongodb';
 import axios from 'axios';
@@ -17,6 +16,10 @@ import axios from 'axios';
 export default function Home({ isConnected }) {
   const router = useRouter();
   const [open, setOpen] = React.useState(false);
+
+  const isLogged = () => {
+    if (localStorage.getItem('username') !== null) router.push('/main/dashboard');
+  }
 
   const handleClose = (event, reason) => {
     if (reason === 'clickaway') {
@@ -52,7 +55,6 @@ export default function Home({ isConnected }) {
         <meta name="description" content="Login Page" />
         <link rel="icon" href="/cloudy.png" />
       </Head>
-
       <main className={styles.main}>
         <form onSubmit={handleSubmit}>
           <Paper className={styles.card} elevation={3}>
