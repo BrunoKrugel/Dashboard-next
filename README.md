@@ -2,7 +2,7 @@
 
 ## WEBSITE PARA INTERPRETAÇÃO DE DADOS METEOROLÓGICOS
 
-[![CodeFactor](https://www.codefactor.io/repository/github/brunokrugel/dashboard-weather/badge)](https://www.codefactor.io/repository/github/brunokrugel/dashboard-weather)
+[![CodeFactor](https://www.codefactor.io/repository/github/brunokrugel/horta-on/badge)](https://www.codefactor.io/repository/github/brunokrugel/dashboard-weather)
 [![Quality Gate Status](https://sonarcloud.io/api/project_badges/measure?project=BrunoKrugel_dashboard-weather&metric=alert_status)](https://sonarcloud.io/summary/new_code?id=BrunoKrugel_dashboard-weather)
 ![Vercel](https://therealsujitk-vercel-badge.vercel.app/?app=dashboard-weather)
 
