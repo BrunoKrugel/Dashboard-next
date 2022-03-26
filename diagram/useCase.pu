@@ -1,0 +1,41 @@
+@startuml Use Case
+skinparam actorStyle awesome
+skinparam componentStyle rectangle
+top to bottom direction
+
+!theme plain
+
+:Agricultor: as user
+
+rectangle "Cadastro de dados" {
+    (Cadastro de endereço) as cadEnd
+    (Cadastro data de plantio\ndas hortaliças) as cadHort
+}
+
+rectangle "Geração de dados" {
+    [Tempo Hoje] as hojeTempo
+    [Previsão do tempo semanal] as semanaTempo
+}
+
+together {
+    rectangle "Análise de dados" {
+        [Analise de fatores essenciais\npara qualidade da Hortaliça] as fatorHort
+    }
+    rectangle "Retorno de informações" {
+        (Avisos) as aviso
+        (Anúncio de perigo) as perigo
+    }
+}
+
+user --> cadEnd
+user --> cadHort
+cadEnd --> hojeTempo
+cadEnd --> semanaTempo
+hojeTempo --> fatorHort
+semanaTempo --> fatorHort
+fatorHort --> aviso
+fatorHort --> perigo
+aviso --> user
+perigo --> user
+
+@endumlx
