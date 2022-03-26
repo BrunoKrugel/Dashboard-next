@@ -78,6 +78,11 @@ export default function Home({ isConnected }) {
                 <Button variant="outlined">Registrar</Button>
               </Link>
             </div>
+            <div className={styles.forgotPassword}>
+              <Link href="/auth/forgotPassword" passHref>
+                <a>Esqueceu sua senha?</a>
+              </Link>
+            </div>
           </Paper>
         </form>
         <Snackbar open={open} autoHideDuration={6000} onClose={handleClose}>

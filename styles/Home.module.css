@@ -56,6 +56,12 @@
   font-size: 1.5rem;
 }
 
+.forgotPassword {
+    color: #86AEFF;
+    text-decoration: none;
+    align-self:center;
+}
+
 .code {
   background: #fafafa;
   border-radius: 5px;
