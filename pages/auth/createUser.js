@@ -15,7 +15,7 @@ const createUser = () => {
       <Head className={styles.main}>
         <title>Criar usuario</title>
         <meta name="description" content="Dashboard" />
-        <link rel="icon" href="/favicon.ico" />
+        <link rel="icon" href="/cloudy.png" />
       </Head>
       <main className={styles.main}>
         <form onSubmit={handleSubmit}>
