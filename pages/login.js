@@ -80,7 +80,7 @@ export default function Home({ isConnected }) {
             </div>
             <div className={styles.forgotPassword}>
               <Link href="/auth/forgotPassword" passHref>
-                <a>Esqueceu sua senha?</a>
+                <a>Esqueceu a senha?</a>
               </Link>
             </div>
           </Paper>
