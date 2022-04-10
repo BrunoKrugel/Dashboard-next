@@ -19,6 +19,8 @@ import uvindexPic from '../../public/widget/uv_ray_1.png';
 const { unixToStampUTC } = require('../../lib/unixTime');
 const getTimeZone = require('../../lib/timeZone');
 const toUpper = require('../../lib/toUpper');
+const { addDays } = require('../../lib/dates');
+
 
 const Item = styled(Paper)(({ theme }) => ({
   backgroundColor: theme.palette.mode === 'dark' ? '#1A2027' : '#fff',
@@ -125,21 +127,27 @@ export default function Dashboard() {
           //Set week data
           setWeekTempDayOne(weekforecast[0].temp.day.toFixed(0));
           setWeekIconDayOne(weekforecast[0].weather[0].icon);
+          setWeekDateDayOne(addDays(currentDate,1));
 
           setWeekTempDayTwo(weekforecast[1].temp.day.toFixed(0));
           setWeekIconDayTwo(weekforecast[1].weather[0].icon);
+          setWeekDateDayTwo(addDays(currentDate,2));
 
           setWeekTempDayThree(weekforecast[2].temp.day.toFixed(0));
           setWeekIconDayThree(weekforecast[2].weather[0].icon);
+          setWeekDateDayThree(addDays(currentDate,3));
 
           setWeekTempDayFour(weekforecast[3].temp.day.toFixed(0));
           setWeekIconDayFour(weekforecast[3].weather[0].icon);
+          setWeekDateDayFour(addDays(currentDate,4));
 
           setWeekTempDayFive(weekforecast[4].temp.day.toFixed(0));
           setWeekIconDayFive(weekforecast[4].weather[0].icon);
+          setWeekDateDayFive(addDays(currentDate,5));
 
           setWeekTempDaySix(weekforecast[5].temp.day.toFixed(0));
           setWeekIconDaySix(weekforecast[5].weather[0].icon);
+          setWeekDateDaySix(addDays(currentDate,6));
         });
     } catch (error) {
       console.log(error);
@@ -169,7 +177,7 @@ export default function Dashboard() {
       if (!weekTempDayOne) getForecastWeek('Canoas,BR');
     },
     // eslint-disable-next-line react-hooks/exhaustive-deps
-    [temp, weekTempDayOne, uvIndex]
+    [temp, weekTempDayOne]
   );
 
   return (
@@ -212,16 +220,28 @@ export default function Dashboard() {
             <div className={styles.week}>
               <Stack direction="row" spacing={2}>
                 <Item>
-                  <Image
-                    alt="Weather Icon 1."
-                    src={`https://openweathermap.org/img/wn/${weekIconDayOne}@4x.png`}
-                    width={70}
-                    height={70}
-                    layout="fixed"
-                  />
-                  {weekTempDayOne}°C
+                  <div>
+                    <label className={styles.weekDayInfo}>
+                        {weekDateDayOne}
+                    </label>
+
+                    <Image
+                      alt="Weather Icon 1."
+                      src={`https://openweathermap.org/img/wn/${weekIconDayOne}@4x.png`}
+                      width={70}
+                      height={70}
+                      layout="fixed"
+                    />
+                    <label className={styles.weekDayInfo}>
+                      {weekTempDayOne}°C
+                    </label>
+
+                  </div>
                 </Item>
                 <Item>
+                  <label className={styles.weekDayInfo}>
+                      {weekDateDayTwo}
+                  </label>
                   <Image
                     alt="Weather Icon 2."
                     src={`https://openweathermap.org/img/wn/${weekIconDayTwo}@4x.png`}
@@ -229,9 +249,15 @@ export default function Dashboard() {
                     height={70}
                     layout="fixed"
                   />
-                  {weekTempDayTwo}°C
+                  <label className={styles.weekDayInfo}>
+                    {weekTempDayTwo}°C
+                  </label>
                 </Item>
                 <Item>
+
+                  <label className={styles.weekDayInfo}>
+                      {weekDateDayThree}
+                  </label>
                   <Image
                     alt="Weather Icon 3."
                     src={`https://openweathermap.org/img/wn/${weekIconDayThree}@4x.png`}
@@ -239,9 +265,15 @@ export default function Dashboard() {
                     height={70}
                     layout="fixed"
                   />
-                  {weekTempDayThree}°C
+                  <label className={styles.weekDayInfo}>
+                    {weekTempDayThree}°C
+                  </label>
                 </Item>
                 <Item>
+
+                  <label className={styles.weekDayInfo}>
+                      {weekDateDayFour}
+                  </label>
                   <Image
                     alt="Weather Icon 4."
                     src={`https://openweathermap.org/img/wn/${weekIconDayFour}@4x.png`}
@@ -249,9 +281,16 @@ export default function Dashboard() {
                     height={70}
                     layout="fixed"
                   />
-                  {weekTempDayFour}°C
+                  <label className={styles.weekDayInfo}>
+                    {weekTempDayFour}°C
+                  </label>
                 </Item>
                 <Item>
+
+                  <label className={styles.weekDayInfo}>
+                      {weekDateDayFive}
+                  </label>
+
                   <Image
                     alt="Weather Icon 5."
                     src={`https://openweathermap.org/img/wn/${weekIconDayFive}@4x.png`}
@@ -259,9 +298,17 @@ export default function Dashboard() {
                     height={70}
                     layout="fixed"
                   />
-                  {weekTempDayFive}°C
+                  <label className={styles.weekDayInfo}>
+                    {weekTempDayFive}°C
+                  </label>
+
                 </Item>
                 <Item>
+
+                  <label className={styles.weekDayInfo}>
+                      {weekDateDaySix}
+                  </label>
+
                   <Image
                     alt="Weather Icon 6."
                     src={`https://openweathermap.org/img/wn/${weekIconDaySix}@4x.png`}
@@ -269,7 +316,10 @@ export default function Dashboard() {
                     height={70}
                     layout="fixed"
                   />
-                  {weekTempDaySix}°C
+                  <label className={styles.weekDayInfo}>
+                    {weekTempDaySix}°C
+                  </label>
+
                 </Item>
               </Stack>
             </div>
