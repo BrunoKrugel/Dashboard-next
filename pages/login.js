@@ -3,13 +3,7 @@ import * as React from 'react';
 import Link from 'next/link';
 import { useRouter } from 'next/router';
 import styles from '../styles/Home.module.css';
-import {
-  Button,
-  TextField,
-  Paper,
-  Alert,
-  Snackbar,
-} from '@mui/material';
+import { Button, TextField, Paper, Alert, Snackbar } from '@mui/material';
 import clientPromise from '../lib/mongodb';
 import axios from 'axios';
 
@@ -18,8 +12,9 @@ export default function Home({ isConnected }) {
   const [open, setOpen] = React.useState(false);
 
   const isLogged = () => {
-    if (localStorage.getItem('username') !== null) router.push('/main/dashboard');
-  }
+    if (localStorage.getItem('username') !== null)
+      router.push('/main/dashboard');
+  };
 
   const handleClose = (event, reason) => {
     if (reason === 'clickaway') {
@@ -65,11 +60,9 @@ export default function Home({ isConnected }) {
               variant="outlined"
               type="password"
             />
-            {isConnected ? (
-              console.log("DB connected")
-            ) : (
-              console.log("DB not connected")
-            )}
+            {isConnected
+              ? console.log('DB connected')
+              : console.log('DB not connected')}
             <div>
               <Button type="submit" variant="contained">
                 Entrar
