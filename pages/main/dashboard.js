@@ -34,8 +34,6 @@ export default function Dashboard() {
   const [cityName, setCityName] = React.useState('');
   const [weather, setWeather] = React.useState('');
   const [icon, setIcon] = React.useState('');
-  const [lat, setLat] = React.useState('');
-  const [long, setLong] = React.useState('');
 
   //Extra info
   const [umidity, setUmidity] = React.useState('');
@@ -50,24 +48,30 @@ export default function Dashboard() {
 
   // Week information
   const [weekTempDayOne, setWeekTempDayOne] = React.useState('');
+  const [weekDateDayOne, setWeekDateDayOne] = React.useState('');
   const [weekIconDayOne, setWeekIconDayOne] = React.useState('');
 
   const [weekTempDayTwo, setWeekTempDayTwo] = React.useState('');
+  const [weekDateDayTwo, setWeekDateDayTwo] = React.useState('');
   const [weekIconDayTwo, setWeekIconDayTwo] = React.useState('');
 
   const [weekTempDayThree, setWeekTempDayThree] = React.useState('');
+  const [weekDateDayThree, setWeekDateDayThree] = React.useState('');
   const [weekIconDayThree, setWeekIconDayThree] = React.useState('');
 
   const [weekTempDayFour, setWeekTempDayFour] = React.useState('');
+  const [weekDateDayFour, setWeekDateDayFour] = React.useState('');
   const [weekIconDayFour, setWeekIconDayFour] = React.useState('');
 
   const [weekTempDayFive, setWeekTempDayFive] = React.useState('');
+  const [weekDateDayFive, setWeekDateDayFive] = React.useState('');
   const [weekIconDayFive, setWeekIconDayFive] = React.useState('');
 
   const [weekTempDaySix, setWeekTempDaySix] = React.useState('');
+  const [weekDateDaySix, setWeekDateDaySix] = React.useState('');
   const [weekIconDaySix, setWeekIconDaySix] = React.useState('');
 
-  var localWeather, weekforecast, uvdata;
+  var localWeather, weekforecast;
 
   // Build date
   let currentDate = new Date();
@@ -91,9 +95,6 @@ export default function Dashboard() {
           setCityName(localWeather.name);
           setWeather(toUpper(localWeather.weather[0].description));
           setIcon(localWeather.weather[0].icon);
-          setLat(localWeather.coord.lat);
-          setLong(localWeather.coord.lon);
-          console.log(`${localWeather.coord.lat} done`);
           if (localWeather.coord) {
             getUvIndex(localWeather.coord.lat, localWeather.coord.lon);
           }
@@ -168,7 +169,7 @@ export default function Dashboard() {
       if (!weekTempDayOne) getForecastWeek('Canoas,BR');
     },
     // eslint-disable-next-line react-hooks/exhaustive-deps
-    [temp, weekTempDayOne, uvIndex, lat]
+    [temp, weekTempDayOne, uvIndex]
   );
 
   return (
@@ -333,7 +334,6 @@ export default function Dashboard() {
             </div>
 
             <div className={styles.widgetUVInfo}>
-              <div>
                 <Image
                   alt="UV Index Icon."
                   src={uvindexPic}
@@ -341,10 +341,12 @@ export default function Dashboard() {
                   height={70}
                   layout="fixed"
                 />
-                <label className={styles.currentUV} id="currentWind">
-                  {uvIndex}%
-                </label>
-              </div>
+
+                <div className={styles.UVInfo}>
+                  <label className={styles.currentUV} id="currentUV">
+                    {uvIndex}%
+                  </label>
+                </div>
             </div>
           </div>
         </Paper>

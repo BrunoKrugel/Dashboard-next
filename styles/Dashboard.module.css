@@ -135,11 +135,17 @@
     background: linear-gradient(to bottom right,#ffa39d, #ff6660);
 }
 
+.UVInfo {
+    gap: .5rem;
+    display: flex;
+    justify-content: center;
+    align-content: center;
+    vertical-align: middle;
+}
+
 .currentUV{
     font-size: 2.5rem;
     font-weight: bold;
-    justify-content: space-between;
-    align-content: space-around;
     color: #fff;
 }
 
