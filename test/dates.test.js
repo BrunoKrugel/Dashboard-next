@@ -1,5 +1,5 @@
 const { addDays } = require('../lib/dates');
 
 test('Sum days', () => {
-  expect(addDays(new Date(2000,1,1), 1)).toStrictEqual(new Date(2000,1,2));
+  expect(addDays(new Date(2000,1,1), 1)).toBe('2/1');
 });
