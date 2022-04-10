@@ -1,4 +1,4 @@
-export default async function handler(req, res) {
+export default async function currentMonth(req, res) {
   var axios = require('axios').default;
   const uri = process.env.RAPIDAPI_KEY;
 

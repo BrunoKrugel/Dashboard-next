@@ -78,30 +78,34 @@ export default function Dashboard() {
 
   const getCurrentForecast = async (city) => {
     try {
-      const res = await axios.post(
-        `${window.location.origin}/api/forecast/currentWeather`,
-        {
+      await axios
+        .post(`${window.location.origin}/api/forecast/currentWeather`, {
           city,
-        }
-      );
-      localWeather = res.data.replace(/test\(/g, '').replace(/\)/g, '');
-      localWeather = JSON.parse(localWeather);
+        })
+        .then((res) => {
+          localWeather = res.data.replace(/test\(/g, '').replace(/\)/g, '');
+          localWeather = JSON.parse(localWeather);
 
-      //Widget Current Temp
-      setTemp(localWeather.main.temp.toFixed(0));
-      setCityName(localWeather.name);
-      setWeather(toUpper(localWeather.weather[0].description));
-      setIcon(localWeather.weather[0].icon);
-      setLat(localWeather.coord.lat);
-      setLong(localWeather.coord.lon);
+          //Widget Current Temp
+          setTemp(localWeather.main.temp.toFixed(0));
+          setCityName(localWeather.name);
+          setWeather(toUpper(localWeather.weather[0].description));
+          setIcon(localWeather.weather[0].icon);
+          setLat(localWeather.coord.lat);
+          setLong(localWeather.coord.lon);
+          console.log(`${localWeather.coord.lat} done`);
+          if (localWeather.coord) {
+            getUvIndex(localWeather.coord.lat, localWeather.coord.lon);
+          }
 
-      //Widget Extra info
-      setUmidity(localWeather.main.humidity);
-      setWind(localWeather.wind.speed);
+          //Widget Extra info
+          setUmidity(localWeather.main.humidity);
+          setWind(localWeather.wind.speed);
 
-      //Widget Sun
-      setSunrise(unixToStampUTC(localWeather.sys.sunrise));
-      setSunset(unixToStampUTC(localWeather.sys.sunset));
+          //Widget Sun
+          setSunrise(unixToStampUTC(localWeather.sys.sunrise));
+          setSunset(unixToStampUTC(localWeather.sys.sunset));
+        });
     } catch (error) {
       console.log(error);
     }
@@ -110,33 +114,32 @@ export default function Dashboard() {
   const getForecastWeek = async (city) => {
     try {
       //Forecast for the week
-      const resWeek = await axios.post(
-        `${window.location.origin}/api/forecast/forecastWeek`,
-        {
+      await axios
+        .post(`${window.location.origin}/api/forecast/forecastWeek`, {
           city,
-        }
-      );
-      console.log(resWeek.data.list);
-      weekforecast = resWeek.data.list;
+        })
+        .then((resWeek) => {
+          weekforecast = resWeek.data.list;
 
-      //Set week data
-      setWeekTempDayOne(weekforecast[0].temp.day.toFixed(0));
-      setWeekIconDayOne(weekforecast[0].weather[0].icon);
+          //Set week data
+          setWeekTempDayOne(weekforecast[0].temp.day.toFixed(0));
+          setWeekIconDayOne(weekforecast[0].weather[0].icon);
 
-      setWeekTempDayTwo(weekforecast[1].temp.day.toFixed(0));
-      setWeekIconDayTwo(weekforecast[1].weather[0].icon);
+          setWeekTempDayTwo(weekforecast[1].temp.day.toFixed(0));
+          setWeekIconDayTwo(weekforecast[1].weather[0].icon);
 
-      setWeekTempDayThree(weekforecast[2].temp.day.toFixed(0));
-      setWeekIconDayThree(weekforecast[2].weather[0].icon);
+          setWeekTempDayThree(weekforecast[2].temp.day.toFixed(0));
+          setWeekIconDayThree(weekforecast[2].weather[0].icon);
 
-      setWeekTempDayFour(weekforecast[3].temp.day.toFixed(0));
-      setWeekIconDayFour(weekforecast[3].weather[0].icon);
+          setWeekTempDayFour(weekforecast[3].temp.day.toFixed(0));
+          setWeekIconDayFour(weekforecast[3].weather[0].icon);
 
-      setWeekTempDayFive(weekforecast[4].temp.day.toFixed(0));
-      setWeekIconDayFive(weekforecast[4].weather[0].icon);
+          setWeekTempDayFive(weekforecast[4].temp.day.toFixed(0));
+          setWeekIconDayFive(weekforecast[4].weather[0].icon);
 
-      setWeekTempDaySix(weekforecast[5].temp.day.toFixed(0));
-      setWeekIconDaySix(weekforecast[5].weather[0].icon);
+          setWeekTempDaySix(weekforecast[5].temp.day.toFixed(0));
+          setWeekIconDaySix(weekforecast[5].weather[0].icon);
+        });
     } catch (error) {
       console.log(error);
     }
@@ -145,18 +148,15 @@ export default function Dashboard() {
   const getUvIndex = async (lat, long) => {
     try {
       //Forecast for the week
-      const resWeek = await axios.post(
-        `${window.location.origin}/api/forecast/currentUV`,
-        {
+      await axios
+        .post(`${window.location.origin}/api/forecast/currentUV`, {
           lat,
           long,
-        }
-      );
-      console.log(resWeek.data.list);
-      uvdata = resWeek.data.list;
-
-      //Set week data
-      setWeekTempDayOne(weekforecast[0].temp.day.toFixed(0));
+        })
+        .then((resUV) => {
+          //Set UV data
+          setUvIndex(resUV.data.result.uv.toFixed(0));
+        });
     } catch (error) {
       console.log(error);
     }
@@ -166,7 +166,6 @@ export default function Dashboard() {
     () => {
       if (!temp) getCurrentForecast('Canoas,BR');
       if (!weekTempDayOne) getForecastWeek('Canoas,BR');
-      if (!lat) getUvIndex(lat, long);
     },
     // eslint-disable-next-line react-hooks/exhaustive-deps
     [temp, weekTempDayOne, uvIndex, lat]
@@ -191,11 +190,12 @@ export default function Dashboard() {
           <div>
             <div className={styles.widget}>
               <Image
-                alt="Weather Icon."
+                alt="Main Weather Icon."
                 src={`https://openweathermap.org/img/wn/${icon}@4x.png`}
                 width={150}
                 height={150}
                 layout="fixed"
+                priority={true}
               />
 
               <div className={styles.divWeather}>
@@ -212,67 +212,61 @@ export default function Dashboard() {
               <Stack direction="row" spacing={2}>
                 <Item>
                   <Image
-                    alt="Weather Icon."
+                    alt="Weather Icon 1."
                     src={`https://openweathermap.org/img/wn/${weekIconDayOne}@4x.png`}
                     width={70}
                     height={70}
                     layout="fixed"
-                    priority={true}
                   />
                   {weekTempDayOne}°C
                 </Item>
                 <Item>
                   <Image
-                    alt="Weather Icon."
+                    alt="Weather Icon 2."
                     src={`https://openweathermap.org/img/wn/${weekIconDayTwo}@4x.png`}
                     width={70}
                     height={70}
                     layout="fixed"
-                    priority={true}
                   />
                   {weekTempDayTwo}°C
                 </Item>
                 <Item>
                   <Image
-                    alt="Weather Icon."
+                    alt="Weather Icon 3."
                     src={`https://openweathermap.org/img/wn/${weekIconDayThree}@4x.png`}
                     width={70}
                     height={70}
                     layout="fixed"
-                    priority={true}
                   />
                   {weekTempDayThree}°C
                 </Item>
                 <Item>
                   <Image
-                    alt="Weather Icon."
+                    alt="Weather Icon 4."
                     src={`https://openweathermap.org/img/wn/${weekIconDayFour}@4x.png`}
                     width={70}
                     height={70}
                     layout="fixed"
-                    priority={true}
                   />
                   {weekTempDayFour}°C
                 </Item>
                 <Item>
                   <Image
-                    alt="Weather Icon."
+                    alt="Weather Icon 5."
                     src={`https://openweathermap.org/img/wn/${weekIconDayFive}@4x.png`}
                     width={70}
                     height={70}
                     layout="fixed"
-                    priority={true}
                   />
                   {weekTempDayFive}°C
                 </Item>
                 <Item>
                   <Image
-                    alt="Weather Icon."
+                    alt="Weather Icon 6."
                     src={`https://openweathermap.org/img/wn/${weekIconDaySix}@4x.png`}
                     width={70}
                     height={70}
                     layout="fixed"
-                    priority={true}
                   />
                   {weekTempDaySix}°C
                 </Item>
@@ -348,7 +342,7 @@ export default function Dashboard() {
                   layout="fixed"
                 />
                 <label className={styles.currentUV} id="currentWind">
-                  {uvIndex}55%
+                  {uvIndex}%
                 </label>
               </div>
             </div>

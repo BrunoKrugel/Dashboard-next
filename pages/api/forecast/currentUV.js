@@ -1,6 +1,5 @@
-export default async function handler(req, res) {
+export default async function currentUV(req, res) {
   var axios = require('axios').default;
-
   const uri = process.env.RAPIDAPI_KEY;
   const uv = process.env.OPENUV_KEY;
 
@@ -18,13 +17,17 @@ export default async function handler(req, res) {
       'x-rapidapi-key': uri,
     },
   };
-
-  axios
-    .request(options)
-    .then(function (response) {
-      res.status(200).json(response.data);
-    })
-    .catch(function (error) {
-      console.error(error);
-    });
+  return new Promise((resolve, reject) => {
+    axios
+      .request(options)
+      .then(function (response) {
+        res.status(200).json(response.data);
+        resolve();
+      })
+      .catch(function (error) {
+        res.status(405).end();
+        console.error(error);
+        resolve();
+      });
+  });
 }

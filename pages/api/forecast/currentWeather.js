@@ -1,4 +1,4 @@
-export default async function handler(req, res) {
+export default async function currentWeather(req, res) {
   const uri = process.env.RAPIDAPI_KEY;
   var axios = require('axios').default;
   var options = {
