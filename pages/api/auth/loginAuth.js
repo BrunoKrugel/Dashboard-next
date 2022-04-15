@@ -1,6 +1,6 @@
 import clientPromise from '../../../lib/mongodb';
 
-export default async function handler(req, res) {
+export default async function loginAuth(req, res) {
   const client = await clientPromise;
   const isAuthPromise = new Promise((resolve, reject) => {
     client
