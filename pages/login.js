@@ -16,7 +16,7 @@ export default function Home({ isConnected }) {
       router.push('/main/dashboard');
   };
 
-  const handleClose = (event, reason) => {
+  const handleClose = (_event, reason) => {
     if (reason === 'clickaway') {
       return;
     }
@@ -87,7 +87,7 @@ export default function Home({ isConnected }) {
   );
 }
 
-export async function getServerSideProps(context) {
+export async function getServerSideProps(_context) {
   try {
     await clientPromise;
     return {
