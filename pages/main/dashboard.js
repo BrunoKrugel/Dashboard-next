@@ -422,7 +422,7 @@ export default function Dashboard() {
             </div>
           </div>
         </Paper>
-        <Snackbar open={open} autoHideDuration={6000} onClose={handleClose}>
+        <Snackbar open={UVHigh} autoHideDuration={6000} onClose={handleClose}>
           <Alert onClose={handleClose} severity="warning" sx={{ width: '100%' }}>
             Incidência de sol na região muito alta!
           </Alert>
