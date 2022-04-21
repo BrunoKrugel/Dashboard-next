@@ -24,9 +24,7 @@ import {
   UVIndexIcon,
 } from '../components/images/icons';
 
-import {
-  WeatherIcon,
-} from '../components/images/weather';
+import { WeatherIcon, MainWeatherIcon } from '../components/images/weather';
 
 //Snippets
 const { unixToStampUTC } = require('../../lib/unixTime');
@@ -227,15 +225,7 @@ export default function Dashboard() {
 
           <div>
             <div className={styles.widget}>
-              <Image
-                alt="Main Weather Icon."
-                src={`https://openweathermap.org/img/wn/${icon}@4x.png`}
-                width={150}
-                height={150}
-                layout="fixed"
-                priority={true}
-              />
-
+              <MainWeatherIcon weather={icon} />
               <div className={styles.divWeather}>
                 <label className={styles.currentTemp} id="currentTemp">
                   {temp}°C
@@ -253,7 +243,7 @@ export default function Dashboard() {
                     <label className={styles.weekDayInfo}>
                       {weekDateDayOne}
                     </label>
-                    <WeatherIcon weather={weekIconDayOne}/>
+                    <WeatherIcon weather={weekIconDayOne} />
 
                     <label className={styles.weekDayInfo}>
                       {weekTempDayOne}°C
