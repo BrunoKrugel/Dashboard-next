@@ -24,6 +24,10 @@ import {
   UVIndexIcon,
 } from '../components/images/icons';
 
+import {
+  WeatherIcon,
+} from '../components/images/weather';
+
 //Snippets
 const { unixToStampUTC } = require('../../lib/unixTime');
 const getTimeZone = require('../../lib/timeZone');
@@ -249,14 +253,8 @@ export default function Dashboard() {
                     <label className={styles.weekDayInfo}>
                       {weekDateDayOne}
                     </label>
+                    <WeatherIcon weather={weekIconDayOne}/>
 
-                    <Image
-                      alt="Weather Icon 1."
-                      src={`https://openweathermap.org/img/wn/${weekIconDayOne}@4x.png`}
-                      width={70}
-                      height={70}
-                      layout="fixed"
-                    />
                     <label className={styles.weekDayInfo}>
                       {weekTempDayOne}°C
                     </label>
@@ -264,13 +262,7 @@ export default function Dashboard() {
                 </Item>
                 <Item>
                   <label className={styles.weekDayInfo}>{weekDateDayTwo}</label>
-                  <Image
-                    alt="Weather Icon 2."
-                    src={`https://openweathermap.org/img/wn/${weekIconDayTwo}@4x.png`}
-                    width={70}
-                    height={70}
-                    layout="fixed"
-                  />
+                  <WeatherIcon weather={weekIconDayTwo} />
                   <label className={styles.weekDayInfo}>
                     {weekTempDayTwo}°C
                   </label>
@@ -279,13 +271,7 @@ export default function Dashboard() {
                   <label className={styles.weekDayInfo}>
                     {weekDateDayThree}
                   </label>
-                  <Image
-                    alt="Weather Icon 3."
-                    src={`https://openweathermap.org/img/wn/${weekIconDayThree}@4x.png`}
-                    width={70}
-                    height={70}
-                    layout="fixed"
-                  />
+                  <WeatherIcon weather={weekIconDayThree} />
                   <label className={styles.weekDayInfo}>
                     {weekTempDayThree}°C
                   </label>
@@ -294,13 +280,7 @@ export default function Dashboard() {
                   <label className={styles.weekDayInfo}>
                     {weekDateDayFour}
                   </label>
-                  <Image
-                    alt="Weather Icon 4."
-                    src={`https://openweathermap.org/img/wn/${weekIconDayFour}@4x.png`}
-                    width={70}
-                    height={70}
-                    layout="fixed"
-                  />
+                  <WeatherIcon weather={weekIconDayFour} />
                   <label className={styles.weekDayInfo}>
                     {weekTempDayFour}°C
                   </label>
@@ -309,28 +289,14 @@ export default function Dashboard() {
                   <label className={styles.weekDayInfo}>
                     {weekDateDayFive}
                   </label>
-
-                  <Image
-                    alt="Weather Icon 5."
-                    src={`https://openweathermap.org/img/wn/${weekIconDayFive}@4x.png`}
-                    width={70}
-                    height={70}
-                    layout="fixed"
-                  />
+                  <WeatherIcon weather={weekIconDayFive} />
                   <label className={styles.weekDayInfo}>
                     {weekTempDayFive}°C
                   </label>
                 </Item>
                 <Item>
                   <label className={styles.weekDayInfo}>{weekDateDaySix}</label>
-
-                  <Image
-                    alt="Weather Icon 6."
-                    src={`https://openweathermap.org/img/wn/${weekIconDaySix}@4x.png`}
-                    width={70}
-                    height={70}
-                    layout="fixed"
-                  />
+                  <WeatherIcon weather={weekIconDaySix} />
                   <label className={styles.weekDayInfo}>
                     {weekTempDaySix}°C
                   </label>
