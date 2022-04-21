@@ -8,12 +8,8 @@ import PlaceIcon from '@mui/icons-material/Place';
 
 import { styled } from '@mui/material/styles';
 
-//Images
-import humidityPic from '../../public/widget/humidity_2.png';
-import windPic from '../../public/widget/wind.png';
-import sunsetPic from '../../public/widget/sunset.png';
-import sunrisePic from '../../public/widget/sunrise.png';
-import uvindexPic from '../../public/widget/uv_ray_1.png';
+//Images components
+import { HumidityIcon, SunriseIcon, SunsetIcon, WindIcon, UVIndexIcon } from '../components/images/icons';
 
 //Snippets
 const { unixToStampUTC } = require('../../lib/unixTime');
@@ -350,27 +346,14 @@ export default function Dashboard() {
           <div>
             <div className={styles.widgetExtraInfo}>
               <div>
-                <Image
-                  alt="Humidity Icon."
-                  src={humidityPic}
-                  width={30}
-                  height={30}
-                  layout="fixed"
-                />
+                <HumidityIcon/>
                 <label className={styles.currentHumidity} id="currentUmidity">
                   {umidity} %
                 </label>
               </div>
 
               <div>
-                <Image
-                  alt="Wind Icon."
-                  src={windPic}
-                  width={30}
-                  height={30}
-                  layout="fixed"
-                />
-
+                <WindIcon/>
                 <label className={styles.currentWind} id="currentWind">
                   {wind} km/h
                 </label>
@@ -379,26 +362,14 @@ export default function Dashboard() {
 
             <div className={styles.widgetSunInfo}>
               <div>
-                <Image
-                  alt="Sun rise Icon."
-                  src={sunrisePic}
-                  width={30}
-                  height={30}
-                  layout="fixed"
-                />
+                <SunriseIcon/>
                 <label className={styles.currentWind} id="currentWind">
                   {sunrise}
                 </label>
               </div>
 
               <div>
-                <Image
-                  alt="Sun set Icon."
-                  src={sunsetPic}
-                  width={30}
-                  height={30}
-                  layout="fixed"
-                />
+                <SunsetIcon />
                 <label className={styles.currentWind} id="currentWind">
                   {sunset}
                 </label>
@@ -406,14 +377,7 @@ export default function Dashboard() {
             </div>
 
             <div className={styles.widgetUVInfo}>
-                <Image
-                  alt="UV Index Icon."
-                  src={uvindexPic}
-                  width={70}
-                  height={70}
-                  layout="fixed"
-                />
-
+                <UVIndexIcon />
                 <div className={styles.UVInfo}>
                   <label className={styles.currentUV} id="currentUV">
                     {uvIndex}%
