@@ -1,10 +1,10 @@
 import Image from 'next/image';
 
-import windPic from '../../../public/widget/wind.png';
-import humidityPic from '../../../public/widget/humidity_2.png';
-import sunsetPic from '../../../public/widget/sunset.png';
-import sunrisePic from '../../../public/widget/sunrise.png';
-import uvindexPic from '../../../public/widget/uv_ray_1.png';
+import windPic from '../../public/widget/wind.png';
+import humidityPic from '../../public/widget/humidity_2.png';
+import sunsetPic from '../../public/widget/sunset.png';
+import sunrisePic from '../../public/widget/sunrise.png';
+import uvindexPic from '../../public/widget/uv_ray_1.png';
 
 function HumidityIcon() {
   return (

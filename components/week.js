@@ -1,4 +1,4 @@
-import styles from '../../styles/Week.module.css';
+import styles from '../styles/Week.module.css';
 
 function WeekInfo(props) {
   return (

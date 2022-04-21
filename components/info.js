@@ -1,4 +1,4 @@
-import styles from '../../styles/Info.module.css';
+import styles from '../styles/Info.module.css';
 
 function CurrentInfo(props) {
   return (
