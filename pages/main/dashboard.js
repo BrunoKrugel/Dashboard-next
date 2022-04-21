@@ -7,8 +7,8 @@ import PlaceIcon from '@mui/icons-material/Place';
 
 import { styled } from '@mui/material/styles';
 
-import { WeekInfo, WeekDate } from '../components/week';
-import { CurrentInfo } from '../components/info';
+import { WeekInfo, WeekDate } from '../../components/week';
+import { CurrentInfo } from '../../components/info';
 
 //Images components
 import {
@@ -17,9 +17,9 @@ import {
   SunsetIcon,
   WindIcon,
   UVIndexIcon,
-} from '../components/images/icons';
+} from '../../components/images/icons';
 
-import { WeatherIcon, MainWeatherIcon } from '../components/images/weather';
+import { WeatherIcon, MainWeatherIcon } from '../../components/images/weather';
 
 //Snippets
 const { unixToStampUTC } = require('../../lib/unixTime');
