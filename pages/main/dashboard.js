@@ -15,6 +15,8 @@ import PlaceIcon from '@mui/icons-material/Place';
 
 import { styled } from '@mui/material/styles';
 
+import { WeekInfo } from '../components/week';
+
 //Images components
 import {
   HumidityIcon,
@@ -244,52 +246,39 @@ export default function Dashboard() {
                       {weekDateDayOne}
                     </label>
                     <WeatherIcon weather={weekIconDayOne} />
-
-                    <label className={styles.weekDayInfo}>
-                      {weekTempDayOne}°C
-                    </label>
+                    <WeekInfo weekTemp={weekTempDayOne} />
                   </div>
                 </Item>
                 <Item>
                   <label className={styles.weekDayInfo}>{weekDateDayTwo}</label>
                   <WeatherIcon weather={weekIconDayTwo} />
-                  <label className={styles.weekDayInfo}>
-                    {weekTempDayTwo}°C
-                  </label>
+                  <WeekInfo weekTemp={weekTempDayTwo} />
                 </Item>
                 <Item>
                   <label className={styles.weekDayInfo}>
                     {weekDateDayThree}
                   </label>
                   <WeatherIcon weather={weekIconDayThree} />
-                  <label className={styles.weekDayInfo}>
-                    {weekTempDayThree}°C
-                  </label>
+                  <WeekInfo weekTemp={weekTempDayThree} />
                 </Item>
                 <Item>
                   <label className={styles.weekDayInfo}>
                     {weekDateDayFour}
                   </label>
                   <WeatherIcon weather={weekIconDayFour} />
-                  <label className={styles.weekDayInfo}>
-                    {weekTempDayFour}°C
-                  </label>
+                  <WeekInfo weekTemp={weekTempDayFour} />
                 </Item>
                 <Item>
                   <label className={styles.weekDayInfo}>
                     {weekDateDayFive}
                   </label>
                   <WeatherIcon weather={weekIconDayFive} />
-                  <label className={styles.weekDayInfo}>
-                    {weekTempDayFive}°C
-                  </label>
+                  <WeekInfo weekTemp={weekTempDayFive} />
                 </Item>
                 <Item>
                   <label className={styles.weekDayInfo}>{weekDateDaySix}</label>
                   <WeatherIcon weather={weekIconDaySix} />
-                  <label className={styles.weekDayInfo}>
-                    {weekTempDaySix}°C
-                  </label>
+                  <WeekInfo weekTemp={weekTempDaySix} />
                 </Item>
               </Stack>
             </div>
