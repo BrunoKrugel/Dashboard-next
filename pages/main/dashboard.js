@@ -28,7 +28,7 @@ import {
 const { unixToStampUTC } = require('../../lib/unixTime');
 const getTimeZone = require('../../lib/timeZone');
 const toUpper = require('../../lib/toUpper');
-const { addDays } = require('../../lib/dates');
+const { addDays, currentDate } = require('../../lib/dates');
 
 const Item = styled(Paper)(({ theme }) => ({
   backgroundColor: theme.palette.mode === 'dark' ? '#1A2027' : '#fff',
@@ -85,13 +85,6 @@ export default function Dashboard() {
 
   var localWeather, weekforecast;
 
-  // Build date
-  let currentDate = new Date();
-  let cDay = currentDate.getDate();
-  let monthName = currentDate.toLocaleString('default', { month: 'long' });
-  monthName = toUpper(monthName);
-  let currentDateFormat = cDay + ' de ' + monthName;
-
   const handleClose = (_event, reason) => {
     if (reason === 'clickaway') {
       return;
@@ -144,27 +137,27 @@ export default function Dashboard() {
           //Set week data
           setWeekTempDayOne(weekforecast[0].temp.day.toFixed(0));
           setWeekIconDayOne(weekforecast[0].weather[0].icon);
-          setWeekDateDayOne(addDays(currentDate, 1));
+          setWeekDateDayOne(addDays(new Date(), 1));
 
           setWeekTempDayTwo(weekforecast[1].temp.day.toFixed(0));
           setWeekIconDayTwo(weekforecast[1].weather[0].icon);
-          setWeekDateDayTwo(addDays(currentDate, 2));
+          setWeekDateDayTwo(addDays(new Date(), 2));
 
           setWeekTempDayThree(weekforecast[2].temp.day.toFixed(0));
           setWeekIconDayThree(weekforecast[2].weather[0].icon);
-          setWeekDateDayThree(addDays(currentDate, 3));
+          setWeekDateDayThree(addDays(new Date(), 3));
 
           setWeekTempDayFour(weekforecast[3].temp.day.toFixed(0));
           setWeekIconDayFour(weekforecast[3].weather[0].icon);
-          setWeekDateDayFour(addDays(currentDate, 4));
+          setWeekDateDayFour(addDays(new Date(), 4));
 
           setWeekTempDayFive(weekforecast[4].temp.day.toFixed(0));
           setWeekIconDayFive(weekforecast[4].weather[0].icon);
-          setWeekDateDayFive(addDays(currentDate, 5));
+          setWeekDateDayFive(addDays(new Date(), 5));
 
           setWeekTempDaySix(weekforecast[5].temp.day.toFixed(0));
           setWeekIconDaySix(weekforecast[5].weather[0].icon);
-          setWeekDateDaySix(addDays(currentDate, 6));
+          setWeekDateDaySix(addDays(new Date(), 6));
         });
     } catch (error) {
       console.log(error);
@@ -224,7 +217,7 @@ export default function Dashboard() {
           <div>
             <PlaceIcon></PlaceIcon>
             <label className={styles.currentCity} id="currentCity">
-              {cityName}, {currentDateFormat}
+              {cityName}, {currentDate()}
             </label>
           </div>
 
