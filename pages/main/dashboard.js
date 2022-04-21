@@ -1,7 +1,14 @@
 import React, { useEffect } from 'react';
 import styles from '../../styles/Dashboard.module.css';
 import Head from 'next/head';
-import { Button, TextField, Paper, Alert, Stack, Snackbar } from '@mui/material';
+import {
+  Button,
+  TextField,
+  Paper,
+  Alert,
+  Stack,
+  Snackbar,
+} from '@mui/material';
 import axios from 'axios';
 import Image from 'next/image';
 import PlaceIcon from '@mui/icons-material/Place';
@@ -9,14 +16,19 @@ import PlaceIcon from '@mui/icons-material/Place';
 import { styled } from '@mui/material/styles';
 
 //Images components
-import { HumidityIcon, SunriseIcon, SunsetIcon, WindIcon, UVIndexIcon } from '../components/images/icons';
+import {
+  HumidityIcon,
+  SunriseIcon,
+  SunsetIcon,
+  WindIcon,
+  UVIndexIcon,
+} from '../components/images/icons';
 
 //Snippets
 const { unixToStampUTC } = require('../../lib/unixTime');
 const getTimeZone = require('../../lib/timeZone');
 const toUpper = require('../../lib/toUpper');
 const { addDays } = require('../../lib/dates');
-
 
 const Item = styled(Paper)(({ theme }) => ({
   backgroundColor: theme.palette.mode === 'dark' ? '#1A2027' : '#fff',
@@ -132,27 +144,27 @@ export default function Dashboard() {
           //Set week data
           setWeekTempDayOne(weekforecast[0].temp.day.toFixed(0));
           setWeekIconDayOne(weekforecast[0].weather[0].icon);
-          setWeekDateDayOne(addDays(currentDate,1));
+          setWeekDateDayOne(addDays(currentDate, 1));
 
           setWeekTempDayTwo(weekforecast[1].temp.day.toFixed(0));
           setWeekIconDayTwo(weekforecast[1].weather[0].icon);
-          setWeekDateDayTwo(addDays(currentDate,2));
+          setWeekDateDayTwo(addDays(currentDate, 2));
 
           setWeekTempDayThree(weekforecast[2].temp.day.toFixed(0));
           setWeekIconDayThree(weekforecast[2].weather[0].icon);
-          setWeekDateDayThree(addDays(currentDate,3));
+          setWeekDateDayThree(addDays(currentDate, 3));
 
           setWeekTempDayFour(weekforecast[3].temp.day.toFixed(0));
           setWeekIconDayFour(weekforecast[3].weather[0].icon);
-          setWeekDateDayFour(addDays(currentDate,4));
+          setWeekDateDayFour(addDays(currentDate, 4));
 
           setWeekTempDayFive(weekforecast[4].temp.day.toFixed(0));
           setWeekIconDayFive(weekforecast[4].weather[0].icon);
-          setWeekDateDayFive(addDays(currentDate,5));
+          setWeekDateDayFive(addDays(currentDate, 5));
 
           setWeekTempDaySix(weekforecast[5].temp.day.toFixed(0));
           setWeekIconDaySix(weekforecast[5].weather[0].icon);
-          setWeekDateDaySix(addDays(currentDate,6));
+          setWeekDateDaySix(addDays(currentDate, 6));
         });
     } catch (error) {
       console.log(error);
@@ -170,7 +182,7 @@ export default function Dashboard() {
         .then((resUV) => {
           //Set UV data
           setUvIndex(resUV.data.result.uv.toFixed(0));
-          if (resUV.data.result.uv.toFixed(0) == 0){
+          if (resUV.data.result.uv.toFixed(0) == 0) {
             setUVHigh(true);
           }
         });
@@ -179,14 +191,16 @@ export default function Dashboard() {
     }
   };
 
-  React.useEffect(() => {
+  React.useEffect(
+    () => {
       if (!temp) getCurrentForecast('Canoas,BR');
     },
     // eslint-disable-next-line react-hooks/exhaustive-deps
     [temp]
   );
 
-  React.useEffect(() => {
+  React.useEffect(
+    () => {
       if (!weekTempDayOne) getForecastWeek('Canoas,BR');
     },
     // eslint-disable-next-line react-hooks/exhaustive-deps
@@ -194,9 +208,9 @@ export default function Dashboard() {
   );
 
   useEffect(() => {
-    console.log("Executed only once!");
-  // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [""]);
+    console.log('Executed only once!');
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, ['']);
 
   return (
     <div className={styles.container}>
@@ -240,7 +254,7 @@ export default function Dashboard() {
                 <Item>
                   <div>
                     <label className={styles.weekDayInfo}>
-                        {weekDateDayOne}
+                      {weekDateDayOne}
                     </label>
 
                     <Image
@@ -253,13 +267,10 @@ export default function Dashboard() {
                     <label className={styles.weekDayInfo}>
                       {weekTempDayOne}°C
                     </label>
-
                   </div>
                 </Item>
                 <Item>
-                  <label className={styles.weekDayInfo}>
-                      {weekDateDayTwo}
-                  </label>
+                  <label className={styles.weekDayInfo}>{weekDateDayTwo}</label>
                   <Image
                     alt="Weather Icon 2."
                     src={`https://openweathermap.org/img/wn/${weekIconDayTwo}@4x.png`}
@@ -272,9 +283,8 @@ export default function Dashboard() {
                   </label>
                 </Item>
                 <Item>
-
                   <label className={styles.weekDayInfo}>
-                      {weekDateDayThree}
+                    {weekDateDayThree}
                   </label>
                   <Image
                     alt="Weather Icon 3."
@@ -288,9 +298,8 @@ export default function Dashboard() {
                   </label>
                 </Item>
                 <Item>
-
                   <label className={styles.weekDayInfo}>
-                      {weekDateDayFour}
+                    {weekDateDayFour}
                   </label>
                   <Image
                     alt="Weather Icon 4."
@@ -304,9 +313,8 @@ export default function Dashboard() {
                   </label>
                 </Item>
                 <Item>
-
                   <label className={styles.weekDayInfo}>
-                      {weekDateDayFive}
+                    {weekDateDayFive}
                   </label>
 
                   <Image
@@ -319,13 +327,9 @@ export default function Dashboard() {
                   <label className={styles.weekDayInfo}>
                     {weekTempDayFive}°C
                   </label>
-
                 </Item>
                 <Item>
-
-                  <label className={styles.weekDayInfo}>
-                      {weekDateDaySix}
-                  </label>
+                  <label className={styles.weekDayInfo}>{weekDateDaySix}</label>
 
                   <Image
                     alt="Weather Icon 6."
@@ -337,7 +341,6 @@ export default function Dashboard() {
                   <label className={styles.weekDayInfo}>
                     {weekTempDaySix}°C
                   </label>
-
                 </Item>
               </Stack>
             </div>
@@ -346,14 +349,14 @@ export default function Dashboard() {
           <div>
             <div className={styles.widgetExtraInfo}>
               <div>
-                <HumidityIcon/>
+                <HumidityIcon />
                 <label className={styles.currentHumidity} id="currentUmidity">
                   {umidity} %
                 </label>
               </div>
 
               <div>
-                <WindIcon/>
+                <WindIcon />
                 <label className={styles.currentWind} id="currentWind">
                   {wind} km/h
                 </label>
@@ -362,7 +365,7 @@ export default function Dashboard() {
 
             <div className={styles.widgetSunInfo}>
               <div>
-                <SunriseIcon/>
+                <SunriseIcon />
                 <label className={styles.currentWind} id="currentWind">
                   {sunrise}
                 </label>
@@ -377,20 +380,24 @@ export default function Dashboard() {
             </div>
 
             <div className={styles.widgetUVInfo}>
-                <UVIndexIcon />
-                <div className={styles.UVInfo}>
-                  <label className={styles.currentUV} id="currentUV">
-                    {uvIndex}%
-                  </label>
-                </div>
+              <UVIndexIcon />
+              <div className={styles.UVInfo}>
+                <label className={styles.currentUV} id="currentUV">
+                  {uvIndex}%
+                </label>
+              </div>
             </div>
           </div>
         </Paper>
         <Snackbar open={UVHigh} autoHideDuration={6000} onClose={handleClose}>
-          <Alert onClose={handleClose} severity="warning" sx={{ width: '100%' }}>
+          <Alert
+            onClose={handleClose}
+            severity="warning"
+            sx={{ width: '100%' }}
+          >
             Incidência de sol na região muito alta!
           </Alert>
-        </Snackbar>        
+        </Snackbar>
       </main>
     </div>
   );
