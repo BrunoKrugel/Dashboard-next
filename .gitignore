@@ -30,3 +30,11 @@ yarn-error.log*
 # vercel
 .vercel
 package-lock.json
+
+/cypress/downloads
+/cypress/fixtures
+/cypress/node_modules
+/cypress/support
+/cypress/videos
+/cypress/plugins
+
