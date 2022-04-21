@@ -39,7 +39,6 @@ export default function Home({ isConnected }) {
     } catch (error) {
       localStorage.setItem('isLogged', '');
       setOpen(true);
-      console.log('oi');
     }
   };
 

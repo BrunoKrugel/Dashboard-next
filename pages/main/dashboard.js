@@ -1,7 +1,7 @@
 import React, { useEffect } from 'react';
 import styles from '../../styles/Dashboard.module.css';
 import Head from 'next/head';
-import { Button, TextField, Paper, Alert, Stack } from '@mui/material';
+import { Button, TextField, Paper, Alert, Stack, Snackbar } from '@mui/material';
 import axios from 'axios';
 import Image from 'next/image';
 import PlaceIcon from '@mui/icons-material/Place';
@@ -73,6 +73,8 @@ export default function Dashboard() {
   const [weekDateDaySix, setWeekDateDaySix] = React.useState('');
   const [weekIconDaySix, setWeekIconDaySix] = React.useState('');
 
+  const [UVHigh, setUVHigh] = React.useState(false);
+
   var localWeather, weekforecast;
 
   // Build date
@@ -81,6 +83,13 @@ export default function Dashboard() {
   let monthName = currentDate.toLocaleString('default', { month: 'long' });
   monthName = toUpper(monthName);
   let currentDateFormat = cDay + ' de ' + monthName;
+
+  const handleClose = (event, reason) => {
+    if (reason === 'clickaway') {
+      return;
+    }
+    setUVHigh(false);
+  };
 
   const getCurrentForecast = async (city) => {
     try {
@@ -165,20 +174,33 @@ export default function Dashboard() {
         .then((resUV) => {
           //Set UV data
           setUvIndex(resUV.data.result.uv.toFixed(0));
+          if (resUV.data.result.uv.toFixed(0) == 0){
+            setUVHigh(true);
+          }
         });
     } catch (error) {
       console.log(error);
     }
   };
 
-  React.useEffect(
-    () => {
+  React.useEffect(() => {
       if (!temp) getCurrentForecast('Canoas,BR');
+    },
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+    [temp]
+  );
+
+  React.useEffect(() => {
       if (!weekTempDayOne) getForecastWeek('Canoas,BR');
     },
     // eslint-disable-next-line react-hooks/exhaustive-deps
-    [temp, weekTempDayOne]
+    [weekTempDayOne]
   );
+
+  useEffect(() => {
+    console.log("Executed only once!");
+  // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [""]);
 
   return (
     <div className={styles.container}>
@@ -400,6 +422,11 @@ export default function Dashboard() {
             </div>
           </div>
         </Paper>
+        <Snackbar open={open} autoHideDuration={6000} onClose={handleClose}>
+          <Alert onClose={handleClose} severity="warning" sx={{ width: '100%' }}>
+            Incidência de sol na região muito alta!
+          </Alert>
+        </Snackbar>        
       </main>
     </div>
   );
