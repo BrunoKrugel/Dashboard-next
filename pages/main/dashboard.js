@@ -1,21 +1,14 @@
 import React, { useEffect } from 'react';
 import styles from '../../styles/Dashboard.module.css';
 import Head from 'next/head';
-import {
-  Button,
-  TextField,
-  Paper,
-  Alert,
-  Stack,
-  Snackbar,
-} from '@mui/material';
+import { Paper, Alert, Stack, Snackbar } from '@mui/material';
 import axios from 'axios';
-import Image from 'next/image';
 import PlaceIcon from '@mui/icons-material/Place';
 
 import { styled } from '@mui/material/styles';
 
-import { WeekInfo } from '../components/week';
+import { WeekInfo, WeekDate } from '../components/week';
+import { CurrentInfo } from '../components/info';
 
 //Images components
 import {
@@ -242,41 +235,33 @@ export default function Dashboard() {
               <Stack direction="row" spacing={2}>
                 <Item>
                   <div>
-                    <label className={styles.weekDayInfo}>
-                      {weekDateDayOne}
-                    </label>
+                    <WeekDate weekDate={weekDateDayOne} />
                     <WeatherIcon weather={weekIconDayOne} />
                     <WeekInfo weekTemp={weekTempDayOne} />
                   </div>
                 </Item>
                 <Item>
-                  <label className={styles.weekDayInfo}>{weekDateDayTwo}</label>
+                  <WeekDate weekDate={weekDateDayTwo} />
                   <WeatherIcon weather={weekIconDayTwo} />
                   <WeekInfo weekTemp={weekTempDayTwo} />
                 </Item>
                 <Item>
-                  <label className={styles.weekDayInfo}>
-                    {weekDateDayThree}
-                  </label>
+                  <WeekDate weekDate={weekDateDayThree} />
                   <WeatherIcon weather={weekIconDayThree} />
                   <WeekInfo weekTemp={weekTempDayThree} />
                 </Item>
                 <Item>
-                  <label className={styles.weekDayInfo}>
-                    {weekDateDayFour}
-                  </label>
+                  <WeekDate weekDate={weekDateDayFour} />
                   <WeatherIcon weather={weekIconDayFour} />
                   <WeekInfo weekTemp={weekTempDayFour} />
                 </Item>
                 <Item>
-                  <label className={styles.weekDayInfo}>
-                    {weekDateDayFive}
-                  </label>
+                  <WeekDate weekDate={weekDateDayFive} />
                   <WeatherIcon weather={weekIconDayFive} />
                   <WeekInfo weekTemp={weekTempDayFive} />
                 </Item>
                 <Item>
-                  <label className={styles.weekDayInfo}>{weekDateDaySix}</label>
+                  <WeekDate weekDate={weekDateDaySix} />
                   <WeatherIcon weather={weekIconDaySix} />
                   <WeekInfo weekTemp={weekTempDaySix} />
                 </Item>
@@ -304,16 +289,12 @@ export default function Dashboard() {
             <div className={styles.widgetSunInfo}>
               <div>
                 <SunriseIcon />
-                <label className={styles.currentWind} id="currentWind">
-                  {sunrise}
-                </label>
+                <CurrentInfo current={sunrise} />
               </div>
 
               <div>
                 <SunsetIcon />
-                <label className={styles.currentWind} id="currentWind">
-                  {sunset}
-                </label>
+                <CurrentInfo current={sunset} />
               </div>
             </div>
 
