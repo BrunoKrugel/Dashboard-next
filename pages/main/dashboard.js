@@ -84,7 +84,7 @@ export default function Dashboard() {
   monthName = toUpper(monthName);
   let currentDateFormat = cDay + ' de ' + monthName;
 
-  const handleClose = (event, reason) => {
+  const handleClose = (_event, reason) => {
     if (reason === 'clickaway') {
       return;
     }
