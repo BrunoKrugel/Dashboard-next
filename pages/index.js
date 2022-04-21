@@ -18,7 +18,8 @@ export default function Home() {
       <main className={styles.main}>
         <div>
           <Image
-            alt="Humidity Icon."
+            className={styles.floating}
+            alt="Main image."
             src={logo}
             width={300}
             height={300}
