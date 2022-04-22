@@ -1,7 +1,7 @@
 import React, { useEffect } from 'react';
 import styles from '../../styles/Dashboard.module.css';
 import Head from 'next/head';
-import { Paper, Alert, Stack, Snackbar } from '@mui/material';
+import { Paper, Alert, Stack, Snackbar, Tooltip } from '@mui/material';
 import axios from 'axios';
 import PlaceIcon from '@mui/icons-material/Place';
 import { useRouter } from 'next/router';
@@ -277,31 +277,38 @@ export default function Dashboard() {
 
           <div>
             <div className={styles.widgetExtraInfo}>
-              <div>
-                <HumidityIcon />
-                <label className={styles.currentHumidity} id="currentUmidity">
-                  {umidity} %
-                </label>
-              </div>
-
-              <div>
-                <WindIcon />
-                <label className={styles.currentWind} id="currentWind">
-                  {wind} km/h
-                </label>
-              </div>
+              <Tooltip title="Umidade do ar">
+                <div>
+                  <HumidityIcon />
+                  <label className={styles.currentHumidity} id="currentUmidity">
+                    {umidity} %
+                  </label>
+                </div>
+              </Tooltip>
+              <Tooltip title="Velocidade do vento">
+                <div>
+                  <WindIcon />
+                  <label className={styles.currentWind} id="currentWind">
+                    {wind} km/h
+                  </label>
+                </div>
+              </Tooltip>
             </div>
 
             <div className={styles.widgetSunInfo}>
-              <div>
-                <SunriseIcon />
-                <CurrentInfo current={sunrise} />
-              </div>
+              <Tooltip title="Nascer do sol">
+                <div>
+                  <SunriseIcon />
+                  <CurrentInfo current={sunrise} />
+                </div>
+              </Tooltip>
+              <Tooltip title="Por do sol">
+                <div>
+                  <SunsetIcon />
+                  <CurrentInfo current={sunset} />
+                </div>
+              </Tooltip>
 
-              <div>
-                <SunsetIcon />
-                <CurrentInfo current={sunset} />
-              </div>
             </div>
 
             <div className={styles.widgetUVInfo}>
