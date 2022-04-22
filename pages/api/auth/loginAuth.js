@@ -1,4 +1,4 @@
-import clientPromise from '../../../lib/mongodb';
+import clientPromise from '../../../lib/db/mongodb';
 
 export default async function loginAuth(req, res) {
   const client = await clientPromise;

@@ -4,7 +4,7 @@ import Link from 'next/link';
 import { useRouter } from 'next/router';
 import styles from '../styles/Home.module.css';
 import { Button, TextField, Paper, Alert, Snackbar } from '@mui/material';
-import clientPromise from '../lib/mongodb';
+import clientPromise from '../lib/db/mongodb';
 import axios from 'axios';
 
 export default function Home({ isConnected }) {

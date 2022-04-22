@@ -23,10 +23,10 @@ import {
 import { WeatherIcon, MainWeatherIcon } from '../../components/images/weather';
 
 //Snippets
-const { unixToStampUTC } = require('../../lib/unixTime');
-const getTimeZone = require('../../lib/timeZone');
-const toUpper = require('../../lib/toUpper');
-const { addDays, currentDate } = require('../../lib/dates');
+const { unixToStampUTC } = require('../../lib/dates/unixTime');
+const getTimeZone = require('../../lib/dates/timeZone');
+const { addDays, currentDate } = require('../../lib/dates/dates');
+const toUpper = require('../../lib/string/toUpper');
 
 const Item = styled(Paper)(({ theme }) => ({
   backgroundColor: theme.palette.mode === 'dark' ? '#1A2027' : '#fff',
@@ -301,7 +301,7 @@ export default function Dashboard() {
                   <CurrentInfo current={sunrise} />
                 </div>
               </Tooltip>
-              <Tooltip title="Por do sol">
+              <Tooltip title="Pôr do sol">
                 <div>
                   <SunsetIcon />
                   <CurrentInfo current={sunset} />
