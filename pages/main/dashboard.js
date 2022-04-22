@@ -4,6 +4,8 @@ import Head from 'next/head';
 import { Paper, Alert, Stack, Snackbar } from '@mui/material';
 import axios from 'axios';
 import PlaceIcon from '@mui/icons-material/Place';
+import { useRouter } from 'next/router';
+
 
 import { styled } from '@mui/material/styles';
 
@@ -36,6 +38,9 @@ const Item = styled(Paper)(({ theme }) => ({
 }));
 
 export default function Dashboard() {
+
+  const router = useRouter();
+
   // Build weather data
   const [temp, setTemp] = React.useState('');
   const [cityName, setCityName] = React.useState('');
@@ -198,7 +203,8 @@ export default function Dashboard() {
   );
 
   useEffect(() => {
-    console.log('Executed only once!');
+    console.log(localStorage.getItem('username'));
+    if (localStorage.getItem('username') !== null) router.push('/main/dashboard');
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, ['']);
 
