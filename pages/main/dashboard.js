@@ -217,7 +217,7 @@ export default function Dashboard() {
       <main className={styles.main}>
         <Paper className={styles.card} elevation={3}>
           <div>
-            <PlaceIcon></PlaceIcon>
+            <PlaceIcon/>
             <label className={styles.currentCity} id="currentCity">
               {cityName}, {currentDate()}
             </label>
