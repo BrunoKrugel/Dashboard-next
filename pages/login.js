@@ -1,5 +1,5 @@
 import Head from 'next/head';
-import * as React from 'react';
+import React, { useEffect } from 'react';
 import Link from 'next/link';
 import { useRouter } from 'next/router';
 import styles from '../styles/Home.module.css';
@@ -41,6 +41,13 @@ export default function Home({ isConnected }) {
       setOpen(true);
     }
   };
+
+  useEffect(() => {
+    console.log(localStorage.getItem('username'));
+    //TODO: check if user is logged
+    //if (localStorage.getItem('username') !== null) router.push('/main/dashboard');
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, ['']);  
 
   return (
     <div className={styles.container}>
