@@ -217,7 +217,7 @@ export default function Dashboard() {
       <main className={styles.main}>
         <Paper className={styles.card} elevation={3}>
           <div>
-            <PlaceIcon/>
+            <PlaceIcon />
             <label className={styles.currentCity} id="currentCity">
               {cityName}, {currentDate()}
             </label>
@@ -236,85 +236,98 @@ export default function Dashboard() {
               </div>
             </div>
 
-            <div className={styles.week}>
-              <Stack direction="row" spacing={2}>
-                <Item>
-                  <div>
-                    <WeekDate weekDate={weekDateDayOne} />
-                    <WeatherIcon weather={weekIconDayOne} />
-                    <WeekInfo weekTemp={weekTempDayOne} />
+            <div id="extraWidgets">
+              <div id="weeklyForecast">
+                <div className={styles.week}>
+                  <Stack direction="row" spacing={2}>
+                    <Item>
+                      <div>
+                        <WeekDate weekDate={weekDateDayOne} />
+                        <WeatherIcon weather={weekIconDayOne} />
+                        <WeekInfo weekTemp={weekTempDayOne} />
+                      </div>
+                    </Item>
+                    <Item>
+                      <WeekDate weekDate={weekDateDayTwo} />
+                      <WeatherIcon weather={weekIconDayTwo} />
+                      <WeekInfo weekTemp={weekTempDayTwo} />
+                    </Item>
+                    <Item>
+                      <WeekDate weekDate={weekDateDayThree} />
+                      <WeatherIcon weather={weekIconDayThree} />
+                      <WeekInfo weekTemp={weekTempDayThree} />
+                    </Item>
+                    <Item>
+                      <WeekDate weekDate={weekDateDayFour} />
+                      <WeatherIcon weather={weekIconDayFour} />
+                      <WeekInfo weekTemp={weekTempDayFour} />
+                    </Item>
+                    <Item>
+                      <WeekDate weekDate={weekDateDayFive} />
+                      <WeatherIcon weather={weekIconDayFive} />
+                      <WeekInfo weekTemp={weekTempDayFive} />
+                    </Item>
+                    <Item>
+                      <WeekDate weekDate={weekDateDaySix} />
+                      <WeatherIcon weather={weekIconDaySix} />
+                      <WeekInfo weekTemp={weekTempDaySix} />
+                    </Item>
+                  </Stack>
+                </div>
+              </div>
+
+              <div
+                id="additionalInfo"
+                style={{
+                  display: 'flex',
+                  padding: '0px 5px',
+                }}
+              >
+                <div className={styles.widgetExtraInfo}>
+                  <Tooltip title="Umidade do ar">
+                    <div>
+                      <HumidityIcon />
+                      <label
+                        className={styles.currentHumidity}
+                        id="currentUmidity"
+                      >
+                        {umidity} %
+                      </label>
+                    </div>
+                  </Tooltip>
+                  <Tooltip title="Velocidade do vento">
+                    <div>
+                      <WindIcon />
+                      <label className={styles.currentWind} id="currentWind">
+                        {wind} km/h
+                      </label>
+                    </div>
+                  </Tooltip>
+                </div>
+
+                <div className={styles.widgetSunInfo}>
+                  <Tooltip title="Nascer do sol">
+                    <div>
+                      <SunriseIcon />
+                      <CurrentInfo current={sunrise} />
+                    </div>
+                  </Tooltip>
+                  <Tooltip title="Pôr do sol">
+                    <div>
+                      <SunsetIcon />
+                      <CurrentInfo current={sunset} />
+                    </div>
+                  </Tooltip>
+                </div>
+
+                <div className={styles.widgetUVInfo}>
+                  <UVIndexIcon />
+                  <div className={styles.UVInfo}>
+                    <label className={styles.currentUV} id="currentUV">
+                      {uvIndex}%
+                    </label>
                   </div>
-                </Item>
-                <Item>
-                  <WeekDate weekDate={weekDateDayTwo} />
-                  <WeatherIcon weather={weekIconDayTwo} />
-                  <WeekInfo weekTemp={weekTempDayTwo} />
-                </Item>
-                <Item>
-                  <WeekDate weekDate={weekDateDayThree} />
-                  <WeatherIcon weather={weekIconDayThree} />
-                  <WeekInfo weekTemp={weekTempDayThree} />
-                </Item>
-                <Item>
-                  <WeekDate weekDate={weekDateDayFour} />
-                  <WeatherIcon weather={weekIconDayFour} />
-                  <WeekInfo weekTemp={weekTempDayFour} />
-                </Item>
-                <Item>
-                  <WeekDate weekDate={weekDateDayFive} />
-                  <WeatherIcon weather={weekIconDayFive} />
-                  <WeekInfo weekTemp={weekTempDayFive} />
-                </Item>
-                <Item>
-                  <WeekDate weekDate={weekDateDaySix} />
-                  <WeatherIcon weather={weekIconDaySix} />
-                  <WeekInfo weekTemp={weekTempDaySix} />
-                </Item>
-              </Stack>
-            </div>
-          </div>
-
-          <div>
-            <div className={styles.widgetExtraInfo}>
-              <Tooltip title="Umidade do ar">
-                <div>
-                  <HumidityIcon />
-                  <label className={styles.currentHumidity} id="currentUmidity">
-                    {umidity} %
-                  </label>
                 </div>
-              </Tooltip>
-              <Tooltip title="Velocidade do vento">
-                <div>
-                  <WindIcon />
-                  <label className={styles.currentWind} id="currentWind">
-                    {wind} km/h
-                  </label>
-                </div>
-              </Tooltip>
-            </div>
-
-            <div className={styles.widgetSunInfo}>
-              <Tooltip title="Nascer do sol">
-                <div>
-                  <SunriseIcon />
-                  <CurrentInfo current={sunrise} />
-                </div>
-              </Tooltip>
-              <Tooltip title="Pôr do sol">
-                <div>
-                  <SunsetIcon />
-                  <CurrentInfo current={sunset} />
-                </div>
-              </Tooltip>
-            </div>
-
-            <div className={styles.widgetUVInfo}>
-              <UVIndexIcon />
-              <div className={styles.UVInfo}>
-                <label className={styles.currentUV} id="currentUV">
-                  {uvIndex}%
-                </label>
               </div>
             </div>
           </div>
