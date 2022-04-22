@@ -5,24 +5,45 @@ import Head from 'next/head';
 import { Button, TextField, Paper, Alert, Snackbar } from '@mui/material';
 import axios from 'axios';
 
+var message = {
+  severity: '',
+  text: '',
+};
 
-export default function CreateUser(){
+function createSeverity(code) {
+  if (code > 400) {
+    return 'error';
+  } else {
+    return 'success';
+  }
+}
+
+function validateForm(e) {
+  return true;
+}
+
+export default function CreateUser() {
   const [open, setOpen] = React.useState(false);
-  
+
   const handleSubmit = async (e) => {
     e.preventDefault();
     const username = e.target.user.value;
     const password = e.target.password.value;
     const email = e.target.email.value;
     try {
-      await axios.post(`${window.location.origin}/api/db/user`, {
-        username,
-        password,
-        email,
-      });
+      await axios
+        .post(`${window.location.origin}/api/db/user`, {
+          username,
+          password,
+          email,
+        })
+        .then((res) => {
+          message.text = res.data.message;
+          message.severity = createSeverity(res.data.code);
+          setOpen(true);
+        });
     } catch (error) {
       console.log(error);
-      setOpen(true);
     }
   };
 
@@ -32,12 +53,12 @@ export default function CreateUser(){
     }
 
     setOpen(false);
-  };  
+  };
 
   return (
     <div className={styles.container}>
       <Head className={styles.main}>
-        <title>Criar usuario</title>
+        <title>Criar usuário</title>
         <meta name="description" content="Dashboard" />
         <link rel="icon" href="/cloudy.png" />
       </Head>
@@ -63,10 +84,14 @@ export default function CreateUser(){
           </Paper>
         </form>
         <Snackbar open={open} autoHideDuration={6000} onClose={handleClose}>
-          <Alert onClose={handleClose} severity="error" sx={{ width: '100%' }}>
-            Usuário ja existe.
+          <Alert
+            onClose={handleClose}
+            severity={message.severity || 'info'}
+            sx={{ width: '100%' }}
+          >
+            {message.text}
           </Alert>
-        </Snackbar>        
+        </Snackbar>
       </main>
     </div>
   );

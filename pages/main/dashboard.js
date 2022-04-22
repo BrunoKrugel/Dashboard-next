@@ -6,7 +6,6 @@ import axios from 'axios';
 import PlaceIcon from '@mui/icons-material/Place';
 import { useRouter } from 'next/router';
 
-
 import { styled } from '@mui/material/styles';
 
 import { WeekInfo, WeekDate } from '../../components/week';
@@ -38,7 +37,6 @@ const Item = styled(Paper)(({ theme }) => ({
 }));
 
 export default function Dashboard() {
-
   const router = useRouter();
 
   // Build weather data
@@ -204,7 +202,8 @@ export default function Dashboard() {
 
   useEffect(() => {
     console.log(localStorage.getItem('username'));
-    if (localStorage.getItem('username') !== null) router.push('/main/dashboard');
+    if (localStorage.getItem('username') !== null)
+      router.push('/main/dashboard');
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, ['']);
 
@@ -308,7 +307,6 @@ export default function Dashboard() {
                   <CurrentInfo current={sunset} />
                 </div>
               </Tooltip>
-
             </div>
 
             <div className={styles.widgetUVInfo}>

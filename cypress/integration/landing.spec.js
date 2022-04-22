@@ -7,6 +7,6 @@ describe('Navigation', () => {
     // The new url should include "/about"
     cy.url().should('include', '/login');
     // The new page should contain an h1 with "About page"
-    cy.get('h1').contains('About Page')
+    cy.get('h1').contains('About Page');
   });
 });
