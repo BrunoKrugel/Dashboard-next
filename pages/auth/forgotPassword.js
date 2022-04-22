@@ -13,7 +13,7 @@ const forgotPassword = () => {
   return (
     <div className={styles.container}>
       <Head className={styles.main}>
-        <title>Criar usuario</title>
+        <title>Esqueci a senha</title>
         <meta name="description" content="Dashboard" />
         <link rel="icon" href="/cloudy.png" />
       </Head>
