@@ -17,7 +17,7 @@ export default async function currentWeather(req, res) {
     },
   };
 
-  return new Promise((resolve, reject) => {
+  return new Promise((resolve, _reject) => {
     axios
       .request(options)
       .then(function (response) {

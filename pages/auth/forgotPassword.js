@@ -2,7 +2,7 @@ import React from 'react';
 import Link from 'next/link';
 import styles from '../../styles/Home.module.css';
 import Head from 'next/head';
-import { Button, TextField, Paper, Alert } from '@mui/material';
+import { Button, TextField, Paper } from '@mui/material';
 
 const handleSubmit = async (e) => {
   e.preventDefault();
