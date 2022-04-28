@@ -4,6 +4,8 @@ import styles from '../../styles/Home.module.css';
 import Head from 'next/head';
 import { Button, TextField, Paper, Alert, Snackbar } from '@mui/material';
 import axios from 'axios';
+import { useRouter } from 'next/router';
+
 
 var message = {
   severity: '',
@@ -49,6 +51,7 @@ function validateForm(e) {
 }
 
 export default function CreateUser() {
+  const router = useRouter();
   const [open, setOpen] = React.useState(false);
 
   const handleSubmit = async (e) => {
@@ -81,6 +84,7 @@ export default function CreateUser() {
     if (reason === 'clickaway') {
       return;
     }
+    if (message.severity === 'success') router.push('/login');
     message.severity = undefined;
     message.text = '';
     setOpen(false);
