@@ -146,9 +146,8 @@
 .UVInfo {
     gap: .5rem;
     display: flex;
+    align-items: center;
     justify-content: center;
-    align-content: center;
-    vertical-align: middle;
 }
 
 .currentUV{
