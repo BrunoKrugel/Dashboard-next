@@ -44,7 +44,7 @@
       "./lib/**"
     ],
     "testPathIgnorePatterns": [
-      "**/*.spec.js"
+      "<rootDir>/cypress/"
     ],
     "coverageReporters": [
       "json",
