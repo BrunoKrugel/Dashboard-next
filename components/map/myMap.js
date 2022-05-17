@@ -1,4 +1,4 @@
-import React, { useEffect, useRef, ReactElement } from 'react';
+import React from 'react';
 import { GoogleMap, useJsApiLoader } from '@react-google-maps/api';
 
 const api_key = process.env.NEXT_PUBLIC_GCLOUD_KEY;
@@ -18,15 +18,13 @@ function MyMap({
     googleMapsApiKey: api_key,
   });
 
-  const [map, setMap] = React.useState(null);
+  const [map, setMap] = React.useState('');
 
-  const onLoad = React.useCallback(function callback(map) {
-    const bounds = new window.google.maps.LatLngBounds(center);
-    map.fitBounds(bounds);
-    setMap(map);
+  const onLoad = React.useCallback(function callback(loadMap) {
+    setMap(loadMap);
   }, []);
 
-  const onUnmount = React.useCallback(function callback(map) {
+  const onUnmount = React.useCallback(function callback(_mountMap) {
     setMap(null);
   }, []);
 
@@ -44,7 +42,7 @@ function MyMap({
     <GoogleMap
       mapContainerStyle={containerStyle}
       center={center}
-      zoom={1}
+      zoom={10}
       onLoad={onLoad}
       onUnmount={onUnmount}
       clickableIcons={false}
