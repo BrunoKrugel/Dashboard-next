@@ -7,6 +7,9 @@ import { Button, TextField, Paper, Alert, Snackbar } from '@mui/material';
 import clientPromise from '../lib/db/mongodb';
 import axios from 'axios';
 
+import { MenuBar } from '../components/menu';
+
+
 export default function Home({ isConnected }) {
   const router = useRouter();
   const [open, setOpen] = React.useState(false);
@@ -50,6 +53,8 @@ export default function Home({ isConnected }) {
   }, ['']);
 
   return (
+    <div>
+    <MenuBar />
     <div className={styles.container}>
       <Head>
         <title>Dashboard Weather</title>
@@ -90,6 +95,7 @@ export default function Home({ isConnected }) {
           </Alert>
         </Snackbar>
       </main>
+    </div>
     </div>
   );
 }

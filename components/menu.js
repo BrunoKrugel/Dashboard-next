@@ -15,11 +15,6 @@ import Image from 'next/image';
 import Head from 'next/head';
 import { useRouter } from 'next/router';
 
-
-import logo from '../public/logo/HortaOn.png';
-
-import styles from '../styles/Landing.module.css';
-
 const pages = [
   {
     title: 'Dashboard',
