@@ -4,17 +4,20 @@ import Image from 'next/image';
 import Link from 'next/link';
 import { Button, TextField, Paper, Alert } from '@mui/material';
 
+import { MenuBar } from '../components/menu';
+
 import logo from '../public/logo/HortaOn.png';
 
 export default function Home() {
   return (
+    <div>
+    <MenuBar />
     <div className={styles.container}>
       <Head>
         <title>Dashboard Weather</title>
         <meta name="description" content="Horta On!" />
         <link rel="icon" href="/cloudy.png" />
       </Head>
-
       <main className={styles.main}>
         <div>
           <Image
@@ -30,6 +33,7 @@ export default function Home() {
           <Button variant="outlined">Entrar</Button>
         </Link>
       </main>
+    </div>
     </div>
   );
 }
