@@ -186,6 +186,9 @@ export default function Dashboard() {
 
   React.useEffect(
     () => {
+      setInterval(() => {
+        getCurrentForecast('Canoas,BR');
+      }, 2000);
       if (!temp) getCurrentForecast('Canoas,BR');
     },
     // eslint-disable-next-line react-hooks/exhaustive-deps

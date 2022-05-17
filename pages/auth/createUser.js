@@ -6,7 +6,6 @@ import { Button, TextField, Paper, Alert, Snackbar } from '@mui/material';
 import axios from 'axios';
 import { useRouter } from 'next/router';
 
-
 var message = {
   severity: '',
   text: '',

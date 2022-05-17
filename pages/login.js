@@ -47,7 +47,7 @@ export default function Home({ isConnected }) {
     //TODO: check if user is logged
     //if (localStorage.getItem('username') !== null) router.push('/main/dashboard');
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, ['']);  
+  }, ['']);
 
   return (
     <div className={styles.container}>
