@@ -22,11 +22,11 @@ const pages = [
   },
   {
     title: 'Configurações',
-    href: '/config',
+    href: '/main/config',
   },
   {
     title: 'Plantações',
-    href: '/plant',
+    href: '/main/plant',
   }
 ];
 

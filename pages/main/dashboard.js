@@ -10,6 +10,8 @@ import { styled } from '@mui/material/styles';
 
 import { WeekInfo, WeekDate } from '../../components/week';
 import { CurrentInfo } from '../../components/info';
+import { MenuBar } from '../../components/menu';
+
 
 //Images components
 import {
@@ -186,17 +188,6 @@ export default function Dashboard() {
 
   React.useEffect(
     () => {
-      setInterval(() => {
-        getCurrentForecast('Canoas,BR');
-      }, 20000);
-      if (!temp) getCurrentForecast('Canoas,BR');
-    },
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-    [temp]
-  );
-
-  React.useEffect(
-    () => {
       if (!weekTempDayOne) getForecastWeek('Canoas,BR');
     },
     // eslint-disable-next-line react-hooks/exhaustive-deps
@@ -204,13 +195,19 @@ export default function Dashboard() {
   );
 
   useEffect(() => {
-    console.log(localStorage.getItem('username'));
-    if (localStorage.getItem('username') !== null)
-      router.push('/main/dashboard');
+
+    //Get current weather
+    getCurrentForecast('Canoas,BR');
+    setInterval(() => {
+      //Validations
+      //getCurrentForecast('Canoas,BR');
+    }, 200000);
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, ['']);
 
   return (
+    <div>
+    <MenuBar />
     <div className={styles.container}>
       <Head>
         <title>Dashboard Weather</title>
@@ -345,6 +342,7 @@ export default function Dashboard() {
           </Alert>
         </Snackbar>
       </main>
+    </div>
     </div>
   );
 }
