@@ -37,7 +37,7 @@ const pages = [
 
 const settings = ['Logout'];
 
-const ResponsiveAppBar = () => {
+function MenuBar() {
   const router = useRouter();
 
   const [anchorElNav, setAnchorElNav] = React.useState(null);
@@ -158,16 +158,8 @@ const ResponsiveAppBar = () => {
           </Toolbar>
         </Container>
       </AppBar>
-      <div className={styles.main}>
-        <Image
-          alt="Humidity Icon."
-          src={logo}
-          width={300}
-          height={300}
-          layout="fixed"
-        />
-      </div>
     </div>
   );
-};
-export default ResponsiveAppBar;
+}
+
+export { MenuBar };
