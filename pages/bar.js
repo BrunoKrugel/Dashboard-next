@@ -13,35 +13,58 @@ import Tooltip from '@mui/material/Tooltip';
 import MenuItem from '@mui/material/MenuItem';
 import Image from 'next/image';
 import Head from 'next/head';
+import { useRouter } from 'next/router';
+
 
 import logo from '../public/logo/HortaOn.png';
 
 import styles from '../styles/Landing.module.css';
 
-const pages = ['Dashboard'];
+const pages = [
+  {
+    title: 'Dashboard',
+    href: '/main/dashboard',
+  },
+  {
+    title: 'Configurações',
+    href: '/config',
+  },
+  {
+    title: 'Plantações',
+    href: '/plant',
+  }
+];
+
 const settings = ['Logout'];
 
 const ResponsiveAppBar = () => {
+  const router = useRouter();
+
   const [anchorElNav, setAnchorElNav] = React.useState(null);
   const [anchorElUser, setAnchorElUser] = React.useState(null);
 
   const handleOpenNavMenu = (event) => {
     setAnchorElNav(event.currentTarget);
-    console.log('Open Nav Menu');
+    console.log('handleOpenNavMenu');
   };
   const handleOpenUserMenu = (event) => {
     setAnchorElUser(event.currentTarget);
-    console.log('Open User Menu');
+    console.log('handleOpenUserMenu');
   };
 
   const handleCloseNavMenu = () => {
     setAnchorElNav(null);
-    console.log('Close Nav Menu');
+    console.log('handleCloseNavMenu');
   };
 
   const handleCloseUserMenu = () => {
     setAnchorElUser(null);
-    console.log('Close Nav Menu');
+    console.log('handleCloseUserMenu');
+  };
+
+  const handleNavPageNavigate = (href) => {
+    router.push(href);
+    handleCloseNavMenu();
   };
 
   return (
@@ -85,8 +108,8 @@ const ResponsiveAppBar = () => {
                 }}
               >
                 {pages.map((page) => (
-                  <MenuItem key={page} onClick={handleCloseNavMenu}>
-                    <Typography textAlign="center">{page}</Typography>
+                  <MenuItem key={page.title} onClick={() => handleNavPageNavigate(page.href)}>
+                    <Typography textAlign="center">{page.title}</Typography>
                   </MenuItem>
                 ))}
               </Menu>
@@ -94,11 +117,11 @@ const ResponsiveAppBar = () => {
             <Box sx={{ flexGrow: 1, display: { xs: 'none', md: 'flex' } }}>
               {pages.map((page) => (
                 <Button
-                  key={page}
-                  onClick={handleCloseNavMenu}
+                  key={page.title}
+                  onClick={() => handleNavPageNavigate(page.href)}
                   sx={{ my: 2, color: 'white', display: 'block' }}
                 >
-                  {page}
+                  {page.title}
                 </Button>
               ))}
             </Box>

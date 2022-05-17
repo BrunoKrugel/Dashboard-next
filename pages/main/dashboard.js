@@ -188,7 +188,7 @@ export default function Dashboard() {
     () => {
       setInterval(() => {
         getCurrentForecast('Canoas,BR');
-      }, 2000);
+      }, 20000);
       if (!temp) getCurrentForecast('Canoas,BR');
     },
     // eslint-disable-next-line react-hooks/exhaustive-deps
