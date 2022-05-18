@@ -3,7 +3,7 @@ const {
 } = require('../../lib/validations/airHumidity');
 
 test('Validate perfect humidity', () => {
-  expect(validateAirHumidity(60)).toBe(true);
+  expect(validateAirHumidity(60).severity).toEqual("info");
 });
 
 test('Validate wrong temperature', () => {

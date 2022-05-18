@@ -3,7 +3,7 @@ const {
 } = require('../../lib/validations/temperature');
 
 test('Validate perfect temperature', () => {
-    expect(validateTemperature(23)).toBe(true);
+    expect(validateTemperature(23).severity).toEqual("info");
 });
 
 test('Validate wrong temperature', () => {
