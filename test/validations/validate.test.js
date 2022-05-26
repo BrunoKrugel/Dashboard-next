@@ -1,5 +1,5 @@
 const {
-    validateWeather
+    validateWeather, cleanValidations, validateWeek
 } = require('../../lib/validations/validate');
 
 const weather = {
@@ -30,6 +30,10 @@ const validations = [
     },
 ];
 
-test('Validate', () => {
+test('Clean validations not relevant', () => {
+    expect(cleanValidations(validations)).toEqual([]);
+});
+
+test('Teste the validations from the weather', () => {
     expect(validateWeather(weather)).toEqual(validations);
 });
