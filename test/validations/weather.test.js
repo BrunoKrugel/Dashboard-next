@@ -1,5 +1,5 @@
 const {
-    validateRain
+    validateRain, validateSun
 } = require('../../lib/validations/weather');
 
 
@@ -247,4 +247,8 @@ const weekInput = {
 
 test('Validate rain in the next 7 days', () => {
     expect(validateRain(weekInput.list).Rain.severity).toEqual("warning");
+});
+
+test('Validate sun in the next 7 days', () => {
+    expect(validateSun(weekInput.list).Sun.severity).toEqual("info");
 });
