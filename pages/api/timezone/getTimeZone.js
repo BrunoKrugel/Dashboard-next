@@ -18,13 +18,18 @@ export default async function getTimeZone(req, res) {
       'x-rapidapi-key': uri,
     },
   };
-
-  axios
-    .request(options)
-    .then(function (response) {
-      res.status(200).json(response.data);
-    })
-    .catch(function (error) {
-      console.error(error);
-    });
+  
+  return new Promise((resolve, _reject) => {
+    axios
+      .request(options)
+      .then(function (response) {
+        res.status(200).json(response.data);
+        resolve();
+      })
+      .catch(function (error) {
+        res.status(405).end();
+        console.error(error);
+        resolve();
+      });
+  });
 }
