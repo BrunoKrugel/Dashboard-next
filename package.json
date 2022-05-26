@@ -46,6 +46,10 @@
     "testPathIgnorePatterns": [
       "<rootDir>/cypress/"
     ],
+    "coveragePathIgnorePatterns": [
+      "<rootDir>/node_modules/",
+      "<rootDir>/lib/db/"
+    ],
     "coverageReporters": [
       "json",
       "lcov",
