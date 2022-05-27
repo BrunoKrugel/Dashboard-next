@@ -53,6 +53,9 @@
     "coverageReporters": [
       "json",
       "lcov",
+      "cobertura",
+      "text",
+      "clover",
       "text-summary"
     ],
     "coverageThreshold": {
