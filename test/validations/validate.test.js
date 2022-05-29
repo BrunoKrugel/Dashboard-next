@@ -90,12 +90,12 @@ const validationsWeek = [{
     }
 ];
 
-describe("Teste de validações:", () => {
+describe("Teste de validações", () => {
     test('Tempo', () => {
         expect(validateWeather(weather)).toEqual(validationsWeather);
     });
 
-    test('Semanal', () => {
+    test('Semanais', () => {
         expect(validateWeek(week)).toEqual(validationsWeek);
     });
 });

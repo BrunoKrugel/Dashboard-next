@@ -2,7 +2,7 @@ const {
     validateTemperature
 } = require('../../lib/validations/temperature');
 
-describe("Teste de Temperatura:", () => {
+describe("Teste de Temperatura", () => {
 
     test('Perfeita', () => {
         expect(validateTemperature(23).temperature.severity).toEqual("info");

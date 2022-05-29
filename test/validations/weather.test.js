@@ -245,7 +245,7 @@ var weekInput = {
     }]
 };
 
-describe("Teste de variações de tempo:", () => {
+describe("Teste de variações de tempo", () => {
 
     test('Chuva pelos próximos 7 dias', () => {
         expect(validateRain(weekInput.list).Rain.severity).toEqual("warning");

@@ -2,7 +2,7 @@ const {
   validateAirHumidity
 } = require('../../lib/validations/airHumidity');
 
-describe("Teste umidade:", () => {
+describe("Teste de umidade", () => {
   test('Perfeita', () => {
     expect(validateAirHumidity(60).humidity.severity).toEqual("info");
   });

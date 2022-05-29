@@ -1,14 +1,15 @@
 const toUpper = require('../lib/string/toUpper');
 
+describe("Teste de manipulamento de texto", () => {
+  test('Primeira letra maiúscula', () => {
+    expect(toUpper('aaaa')).toBe('Aaaa');
+  });
 
-test('Test if the first letter is upper case', () => {
-  expect(toUpper('aaaa')).toBe('Aaaa');
-});
+  test('Todas maiúscula', () => {
+    expect(toUpper('AAAA')).not.toBe('aaaa');
+  });
 
-test('Test with all upper case', () => {
-  expect(toUpper('AAAA')).not.toBe('aaaa');
-});
-
-test('Test to not be lower case', () => {
-  expect(toUpper('aaaa')).not.toBe('aaaa');
+  test('Nenhuma maiúscula', () => {
+    expect(toUpper('aaaa')).not.toBe('aaaa');
+  });
 });

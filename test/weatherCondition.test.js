@@ -26,15 +26,17 @@ const arr = {
     }]
 }
 
-test('Test list for rain conditions', () => {
-    expect(weatherCondition(arr.list, 'rain')).toEqual(2);
-});
+describe("Teste de condições temporais", () => {
+    test('Chuvas', () => {
+        expect(weatherCondition(arr.list, 'rain')).toEqual(2);
+    });
 
 
-test('Test list for sun conditions', () => {
-    expect(weatherCondition(arr.list, 'sun')).toEqual(3);
-});
+    test('Sol', () => {
+        expect(weatherCondition(arr.list, 'sun')).toEqual(3);
+    });
 
-test('Test list for sun conditions', () => {
-    expect(weatherCondition(arr.list, 'cloud')).toEqual(0);
+    test('Nuvens', () => {
+        expect(weatherCondition(arr.list, 'cloud')).toEqual(0);
+    });
 });
