@@ -26,7 +26,6 @@ import { WeatherIcon, MainWeatherIcon } from '../../components/images/weather';
 
 //Snippets
 const { unixToStampUTC } = require('../../lib/dates/unixTime');
-const getTimeZone = require('../../lib/dates/timeZone');
 const { addDays, currentDate } = require('../../lib/dates/dates');
 const toUpper = require('../../lib/string/toUpper');
 
@@ -48,7 +47,7 @@ export default function Dashboard() {
   const [icon, setIcon] = React.useState('');
 
   //Extra info
-  const [umidity, setUmidity] = React.useState('');
+  const [humidity, setHumidity] = React.useState('');
   const [wind, setWind] = React.useState('');
 
   //Sun Info
@@ -114,7 +113,7 @@ export default function Dashboard() {
           }
 
           //Widget Extra info
-          setUmidity(localWeather.main.humidity);
+          setHumidity(localWeather.main.humidity);
           setWind(localWeather.wind.speed);
 
           //Widget Sun
@@ -289,9 +288,9 @@ export default function Dashboard() {
                       <HumidityIcon />
                       <label
                         className={styles.currentHumidity}
-                        id="currentUmidity"
+                        id="currentHumidity"
                       >
-                        {umidity} %
+                        {humidity} %
                       </label>
                     </div>
                   </Tooltip>
