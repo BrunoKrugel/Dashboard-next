@@ -3,7 +3,7 @@ const {
 } = require('../../lib/validations/weather');
 
 
-const weekInput = {
+var weekInput = {
     "city": {
         "id": 2643743,
         "name": "London",
@@ -245,10 +245,25 @@ const weekInput = {
 };
 
 
-test('Validate rain in the next 7 days', () => {
+test('Validate rain for the next 7 days', () => {
     expect(validateRain(weekInput.list).Rain.severity).toEqual("warning");
 });
 
-test('Validate sun in the next 7 days', () => {
+test('Validate no sun for the next 7 days', () => {
     expect(validateSun(weekInput.list).Sun.severity).toEqual("info");
+});
+
+test('Validate no rain for the next 7 days', () => {
+    weekInput.list[0].weather[0].main = "Sun";
+    weekInput.list[1].weather[0].main = "Sun";
+    weekInput.list[2].weather[0].main = "Sun";
+    weekInput.list[3].weather[0].main = "Sun";
+    weekInput.list[4].weather[0].main = "Sun";
+    weekInput.list[5].weather[0].main = "Sun";
+    weekInput.list[6].weather[0].main = "Sun";
+    expect(validateRain(weekInput.list).Rain.severity).toEqual("info");
+});
+
+test('Validate sun in the next 7 days', () => {
+    expect(validateSun(weekInput.list).Sun.severity).toEqual("warning");
 });
