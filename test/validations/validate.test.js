@@ -1,5 +1,6 @@
 const {
-    validateWeather, validateWeek
+    validateWeather,
+    validateWeek
 } = require('../../lib/validations/validate');
 
 const weather = {
@@ -34,7 +35,7 @@ const week = {
         "weather": [{
             "id": 500,
             "main": "Rain"
-            
+
         }]
     }, {
         "weather": [{
@@ -49,19 +50,18 @@ const week = {
     }]
 };
 
-const validationsWeather = [
-    {
+const validationsWeather = [{
         humidity: {
             severity: 'warn',
             message: 'Low humidity favors an outer leaf edge burn.',
         }
-    },    
+    },
     {
         uvIndex: {
             severity: 'info',
             message: 'UV index is ideal for the plant.',
         }
-    },     
+    },
     {
         temperature: {
             severity: 'info',
@@ -76,8 +76,7 @@ const validationsWeather = [
     }
 ];
 
-const validationsWeek = [
-    {
+const validationsWeek = [{
         Rain: {
             severity: 'warning',
             message: 'Quantidade de chuvas acima do ideal.',
@@ -91,11 +90,12 @@ const validationsWeek = [
     }
 ];
 
+describe("Teste de validações:", () => {
+    test('Tempo', () => {
+        expect(validateWeather(weather)).toEqual(validationsWeather);
+    });
 
-test('Teste the validations from the weather', () => {
-    expect(validateWeather(weather)).toEqual(validationsWeather);
-});
-
-test('Teste the validations from the week', () => {
-    expect(validateWeek(week)).toEqual(validationsWeek);
+    test('Semanal', () => {
+        expect(validateWeek(week)).toEqual(validationsWeek);
+    });
 });

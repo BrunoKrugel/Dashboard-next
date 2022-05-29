@@ -1,5 +1,6 @@
 const {
-    validateRain, validateSun
+    validateRain,
+    validateSun
 } = require('../../lib/validations/weather');
 
 
@@ -244,26 +245,28 @@ var weekInput = {
     }]
 };
 
+describe("Teste de variações de tempo:", () => {
 
-test('Validate rain for the next 7 days', () => {
-    expect(validateRain(weekInput.list).Rain.severity).toEqual("warning");
-});
+    test('Chuva pelos próximos 7 dias', () => {
+        expect(validateRain(weekInput.list).Rain.severity).toEqual("warning");
+    });
 
-test('Validate no sun for the next 7 days', () => {
-    expect(validateSun(weekInput.list).Sun.severity).toEqual("info");
-});
+    test('Sol pelos próximos 7 dias', () => {
+        expect(validateSun(weekInput.list).Sun.severity).toEqual("info");
+    });
 
-test('Validate no rain for the next 7 days', () => {
-    weekInput.list[0].weather[0].main = "Sun";
-    weekInput.list[1].weather[0].main = "Sun";
-    weekInput.list[2].weather[0].main = "Sun";
-    weekInput.list[3].weather[0].main = "Sun";
-    weekInput.list[4].weather[0].main = "Sun";
-    weekInput.list[5].weather[0].main = "Sun";
-    weekInput.list[6].weather[0].main = "Sun";
-    expect(validateRain(weekInput.list).Rain.severity).toEqual("info");
-});
+    test('Nenhuma chuva pelos próximos 7 dias', () => {
+        weekInput.list[0].weather[0].main = "Sun";
+        weekInput.list[1].weather[0].main = "Sun";
+        weekInput.list[2].weather[0].main = "Sun";
+        weekInput.list[3].weather[0].main = "Sun";
+        weekInput.list[4].weather[0].main = "Sun";
+        weekInput.list[5].weather[0].main = "Sun";
+        weekInput.list[6].weather[0].main = "Sun";
+        expect(validateRain(weekInput.list).Rain.severity).toEqual("info");
+    });
 
-test('Validate sun in the next 7 days', () => {
-    expect(validateSun(weekInput.list).Sun.severity).toEqual("warning");
+    test('Sem sol pelos próximos 7 dias', () => {
+        expect(validateSun(weekInput.list).Sun.severity).toEqual("warning");
+    });
 });

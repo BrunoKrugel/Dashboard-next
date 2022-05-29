@@ -2,14 +2,17 @@ const {
     validateTemperature
 } = require('../../lib/validations/temperature');
 
-test('Validate perfect temperature', () => {
-    expect(validateTemperature(23).temperature.severity).toEqual("info");
-});
+describe("Teste de Temperatura:", () => {
 
-test('Validate lower temperature', () => {
-    expect(validateTemperature(15).temperature.severity).toEqual("warn");
-});
+    test('Perfeita', () => {
+        expect(validateTemperature(23).temperature.severity).toEqual("info");
+    });
 
-test('Validate higher temperature', () => {
-    expect(validateTemperature(26).temperature.severity).toEqual("warn");
+    test('Baixa', () => {
+        expect(validateTemperature(15).temperature.severity).toEqual("warn");
+    });
+
+    test('Muito alta', () => {
+        expect(validateTemperature(26).temperature.severity).toEqual("warn");
+    });
 });
