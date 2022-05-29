@@ -5,6 +5,32 @@ var status = {
   message: '',
 };
 
+function getUser(req) {
+  return new Promise((resolve, reject) => {
+    clientPromise
+      .then((client) => {
+        client
+          .db()
+          .collection('login')
+          //TODO save user name and lat and long
+          .findOne({ username: req.body.username }, function (err, result) {
+            if (err || !result) {
+              status.code = 404;
+              status.message = 'Usuário não encontrado';
+              reject();
+            } else {
+              status.code = 200;
+              status.message = 'Usuário encontrado';
+              resolve(result);
+            }
+          });
+      })
+      .catch((err) => {
+        reject(err);
+      });
+  });
+}
+
 function createUser(req) {
   return new Promise((resolve, reject) => {
     clientPromise
