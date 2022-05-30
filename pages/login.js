@@ -56,38 +56,38 @@ export default function Home({ isConnected }) {
         <meta name="description" content="Login Page" />
         <link rel="icon" href="/cloudy.png" />
       </Head>
-        <form onSubmit={handleSubmit}>
-          <Paper className={styles.card} elevation={3}>
-            <TextField id="user" label="Usuário" variant="outlined" />
-            <TextField
-              id="password"
-              label="Senha"
-              variant="outlined"
-              type="password"
-            />
-            {isConnected
-              ? console.log('DB connected')
-              : console.log('DB not connected')}
-            <div>
-              <Button type="submit" variant="contained">
-                Entrar
-              </Button>
-              <Link href="/auth/createUser" passHref>
-                <Button variant="outlined">Registrar</Button>
-              </Link>
-            </div>
-            <div className={styles.forgotPassword}>
-              <Link href="/auth/forgotPassword" passHref>
-                <a>Esqueceu a senha?</a>
-              </Link>
-            </div>
-          </Paper>
-        </form>
-        <Snackbar open={open} autoHideDuration={6000} onClose={handleClose}>
-          <Alert onClose={handleClose} severity="error" sx={{ width: '100%' }}>
-            Usuário/senha incorretos.
-          </Alert>
-        </Snackbar>
+      <form onSubmit={handleSubmit}>
+        <Paper className={styles.card} elevation={3}>
+          <TextField id="user" label="Usuário" variant="outlined" />
+          <TextField
+            id="password"
+            label="Senha"
+            variant="outlined"
+            type="password"
+          />
+          {isConnected
+            ? console.log('DB connected')
+            : console.log('DB not connected')}
+          <div>
+            <Button type="submit" variant="contained">
+              Entrar
+            </Button>
+            <Link href="/auth/createUser" passHref>
+              <Button variant="outlined">Registrar</Button>
+            </Link>
+          </div>
+          <div className={styles.forgotPassword}>
+            <Link href="/auth/forgotPassword" passHref>
+              <a>Esqueceu a senha?</a>
+            </Link>
+          </div>
+        </Paper>
+      </form>
+      <Snackbar open={open} autoHideDuration={6000} onClose={handleClose}>
+        <Alert onClose={handleClose} severity="error" sx={{ width: '100%' }}>
+          Usuário/senha incorretos.
+        </Alert>
+      </Snackbar>
     </div>
   );
 }

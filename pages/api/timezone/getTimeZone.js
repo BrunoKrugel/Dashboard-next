@@ -18,7 +18,7 @@ export default async function getTimeZone(req, res) {
       'x-rapidapi-key': uri,
     },
   };
-  
+
   return new Promise((resolve, _reject) => {
     axios
       .request(options)

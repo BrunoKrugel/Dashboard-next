@@ -8,11 +8,7 @@ const containerStyle = {
   height: '400px',
 };
 
-
-function MyMap({
-  center
-}) {
-  
+function MyMap({ center }) {
   const { isLoaded } = useJsApiLoader({
     id: 'google-map-script',
     googleMapsApiKey: api_key,

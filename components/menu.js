@@ -27,7 +27,7 @@ const pages = [
   {
     title: 'Plantações',
     href: '/main/plant',
-  }
+  },
 ];
 
 const settings = ['Logout'];
@@ -70,7 +70,7 @@ function MenuBar(props) {
         <link rel="icon" href="/cloudy.png" />
       </Head>
 
-      <AppBar className='navbar' position="static">
+      <AppBar className="navbar" position="static">
         <Container maxWidth="xl">
           <Toolbar disableGutters>
             <Box sx={{ flexGrow: 1, display: { xs: 'flex', md: 'none' } }}>
@@ -103,7 +103,10 @@ function MenuBar(props) {
                 }}
               >
                 {pages.map((page) => (
-                  <MenuItem key={page.title} onClick={() => handleNavPageNavigate(page.href)}>
+                  <MenuItem
+                    key={page.title}
+                    onClick={() => handleNavPageNavigate(page.href)}
+                  >
                     <Typography textAlign="center">{page.title}</Typography>
                   </MenuItem>
                 ))}
@@ -123,10 +126,12 @@ function MenuBar(props) {
 
             <Box sx={{ flexGrow: 0 }}>
               <Tooltip title="Usuário">
-                  <Button 
-                    onClick={handleOpenUserMenu}
-                    sx={{ my: 2, color: 'white', display: 'block' }}
-                  >{props.user || "Usuário"}</Button>
+                <Button
+                  onClick={handleOpenUserMenu}
+                  sx={{ my: 2, color: 'white', display: 'block' }}
+                >
+                  {props.user || 'Usuário'}
+                </Button>
               </Tooltip>
               <Menu
                 sx={{ mt: '45px' }}

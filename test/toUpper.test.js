@@ -1,6 +1,6 @@
 const toUpper = require('../lib/string/toUpper');
 
-describe("Teste de manipulamento de texto", () => {
+describe('Teste de manipulamento de texto', () => {
   test('Primeira letra maiúscula', () => {
     expect(toUpper('aaaa')).toBe('Aaaa');
   });
