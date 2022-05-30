@@ -1,15 +1,18 @@
 import React, { useEffect } from 'react';
 import styles from '../../styles/Dashboard.module.css';
 import Head from 'next/head';
-import { Paper, Alert, Stack, Snackbar, Tooltip } from '@mui/material';
+import { Paper, Stack, Tooltip } from '@mui/material';
 import axios from 'axios';
 import PlaceIcon from '@mui/icons-material/Place';
 import { useRouter } from 'next/router';
+import { useSnackbar } from 'notistack';
 
 import { styled } from '@mui/material/styles';
 
 import { WeekInfo, WeekDate } from '../../components/week';
 import { CurrentInfo } from '../../components/info';
+
+import { validateWeather } from '../../lib/validations/validate';
 
 //Images components
 import {
@@ -38,6 +41,8 @@ const Item = styled(Paper)(({ theme }) => ({
 
 export default function Dashboard() {
   const router = useRouter();
+
+  const { enqueueSnackbar, closeSnackbar } = useSnackbar();
 
   // Build weather data
   const [temp, setTemp] = React.useState('');
@@ -81,15 +86,50 @@ export default function Dashboard() {
   const [weekDateDaySix, setWeekDateDaySix] = React.useState('');
   const [weekIconDaySix, setWeekIconDaySix] = React.useState('');
 
-  const [UVHigh, setUVHigh] = React.useState(false);
-
   var localWeather, weekforecast;
 
-  const handleClose = (_event, reason) => {
-    if (reason === 'clickaway') {
-      return;
+  const validateInfo = () => {
+    let weatherInfo = {
+      airHumidity: humidity,
+      uvIndex: uvIndex,
+      temperature: temp,
+      wind: wind,
     }
-    setUVHigh(false);
+    console.log(weatherInfo);
+    let messages = validateWeather(weatherInfo);
+
+
+    if (messages.humidity.severity != 'info') {
+      enqueueSnackbar(messages.humidity.message, {
+        variant: messages.humidity.severity,
+        autoHideDuration: 5000,
+        preventDuplicate: true,
+      });
+    }
+
+    if (messages.uvIndex.severity != 'info') {
+      enqueueSnackbar(messages.uvIndex.message, {
+        variant: messages.uvIndex.severity,
+        autoHideDuration: 5000,
+        preventDuplicate: true,
+      });
+    }
+    
+    if (messages.temperature.severity != 'info') {
+      enqueueSnackbar(messages.temperature.message, {
+        variant: messages.temperature.severity,
+        autoHideDuration: 5000,
+        preventDuplicate: true,
+      });
+    }
+
+    if (messages.wind.severity != 'info') {
+      enqueueSnackbar(messages.wind.message, {
+        variant: messages.wind.severity,
+        autoHideDuration: 5000,
+        preventDuplicate: true,
+      });
+    }    
   };
 
   const getCurrentForecast = async (lat, lon) => {
@@ -119,6 +159,14 @@ export default function Dashboard() {
           //Widget Sun
           setSunrise(unixToStampUTC(localWeather.sys.sunrise));
           setSunset(unixToStampUTC(localWeather.sys.sunset));
+
+          if (localWeather.coord) {
+            getForecastWeek(localWeather.coord.lat, localWeather.coord.lon);
+          }
+
+          if (localWeather.coord) {
+            validateInfo();
+          }
         });
     } catch (error) {
       console.log(error);
@@ -177,26 +225,11 @@ export default function Dashboard() {
         .then((resUV) => {
           //Set UV data
           setUvIndex(resUV.data.result.uv.toFixed(0));
-          if (resUV.data.result.uv.toFixed(0) == 0) {
-            setUVHigh(true);
-          }
         });
     } catch (error) {
       console.log(error);
     }
   };
-
-  React.useEffect(
-    () => {
-      if (!weekTempDayOne)
-        getForecastWeek(
-          getStorageValue('lat', '-30.030052'),
-          getStorageValue('long', '-51.228714')
-        );
-    },
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-    [weekTempDayOne]
-  );
 
   useEffect(() => {
     //Get current weather
@@ -205,8 +238,9 @@ export default function Dashboard() {
       getStorageValue('long', '-51.228714')
     );
     setInterval(() => {
+      console.log('refresh');
       //Validations
-      //getCurrentForecast('Canoas,BR');
+      validateInfo();
     }, 200000);
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, ['']);
@@ -335,11 +369,6 @@ export default function Dashboard() {
           </div>
         </div>
       </Paper>
-      <Snackbar open={UVHigh} autoHideDuration={6000} onClose={handleClose}>
-        <Alert onClose={handleClose} severity="warning" sx={{ width: '100%' }}>
-          Incidência de sol na região muito alta!
-        </Alert>
-      </Snackbar>
     </div>
   );
 }
