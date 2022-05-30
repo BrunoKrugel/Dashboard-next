@@ -1,5 +1,6 @@
 import React from 'react';
 import { GoogleMap, useJsApiLoader } from '@react-google-maps/api';
+import axios from 'axios';
 
 const api_key = process.env.NEXT_PUBLIC_GCLOUD_KEY;
 
@@ -8,7 +9,7 @@ const containerStyle = {
   height: '280px',
 };
 
-function MyMap({ center }) {
+function MyMap({ center, onCitySelect }) {
   const { isLoaded } = useJsApiLoader({
     id: 'google-map-script',
     googleMapsApiKey: api_key,
@@ -24,14 +25,28 @@ function MyMap({ center }) {
     setMap(null);
   }, []);
 
-  const onClick = (...args) => {
+  const onClick = async (...args) => {
     console.log(
-      args[0],
       'onClick args: ',
       args[0].latLng.lat(),
-      ' : ',
+      ',',
       args[0].latLng.lng()
     );
+      let localization = `${args[0].latLng.lat()}${args[0].latLng.lng()}`;
+      //Forecast for the week
+      await axios
+        .post(`${window.location.origin}/api/country/currentCity`, {
+          localization,
+        })
+        .then((resCity) => {
+          console.log(resCity.data);
+          localStorage.setItem('cityName', resCity.data.data[0].city);
+          onCitySelect(resCity.data.data[0].city);
+        })
+        .catch((err) => {
+          console.log(err);
+        }
+        );
   };
 
   return isLoaded ? (
