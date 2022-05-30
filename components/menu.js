@@ -55,6 +55,7 @@ function MenuBar(props) {
   const handleCloseUserMenu = () => {
     setAnchorElUser(null);
     console.log('handleCloseUserMenu');
+    //TODO Clean local storage and redirect to login
   };
 
   const handleNavPageNavigate = (href) => {
