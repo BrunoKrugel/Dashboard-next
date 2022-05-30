@@ -10,14 +10,10 @@ import {
   TextField,
 } from '@mui/material';
 import axios from 'axios';
-import PlaceIcon from '@mui/icons-material/Place';
+
 import { useRouter } from 'next/router';
 import { MyMap } from '../../components/map/myMap';
 
-import { styled } from '@mui/material/styles';
-
-import { WeekInfo, WeekDate } from '../../components/week';
-import { CurrentInfo } from '../../components/info';
 const center = {
   lat: -30.0277,
   lng: -51.2287,
@@ -35,10 +31,11 @@ export default function Home() {
         <meta name="description" content="Dashboard" />
         <link rel="icon" href="/config.png" />
       </Head>
-      <main className={styles.main}>
         <Paper className={styles.card}>
           <div>
-            <MyMap center={center} />
+            <div>
+              <MyMap center={center} />
+            </div>
             <div>
               <form onSubmit={handleSubmit}>
                 <TextField
@@ -46,18 +43,21 @@ export default function Home() {
                   label="Nome"
                   variant="outlined"
                   name="Nome"
+                  style={{ marginBottom: '10px', width: '100%'}}
                 />
                 <TextField
                   id="email"
                   label="E-mail"
                   variant="outlined"
                   name="E-mail"
+                  style={{ marginTop: '10px' , marginBottom: '10px', width: '100%'}}
                 />
                 <TextField
                   id="cidade"
                   label="Cidade"
                   variant="outlined"
                   name="Cidade"
+                  style={{ marginTop: '10px' , marginBottom: '10px', width: '100%'}}
                 />
                 <Button type="submit" variant="contained">
                   Salvar
@@ -66,7 +66,6 @@ export default function Home() {
             </div>
           </div>
         </Paper>
-      </main>
     </div>
   );
 }

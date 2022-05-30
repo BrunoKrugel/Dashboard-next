@@ -5,7 +5,7 @@ const api_key = process.env.NEXT_PUBLIC_GCLOUD_KEY;
 
 const containerStyle = {
   width: '400px',
-  height: '400px',
+  height: '280px',
 };
 
 function MyMap({ center }) {
