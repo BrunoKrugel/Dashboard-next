@@ -2,6 +2,8 @@ import '../styles/globals.css';
 import { ThemeProvider, createTheme } from '@mui/material';
 import { MenuBar } from '../components/menu';
 
+const { getStorageValue } = require('../lib/db/storage');
+
 const theme = createTheme({
   palette: {
     primary: {
@@ -12,14 +14,6 @@ const theme = createTheme({
     },
   },
 });
-
-function getStorageValue(key, defaultValue) {
-  // getting stored value
-  if (typeof window !== 'undefined') {
-    const saved = localStorage.getItem(key);
-    return saved || defaultValue;
-  }
-}
 
 function MyApp({ Component, pageProps }) {
   return (
