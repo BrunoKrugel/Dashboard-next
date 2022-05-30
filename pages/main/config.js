@@ -1,17 +1,14 @@
 import React, { useEffect } from 'react';
+import { useSnackbar } from 'notistack';
 import styles from '../../styles/Config.module.css';
 import Head from 'next/head';
 import {
   Paper,
   Button,
-  Stack,
-  Snackbar,
-  Tooltip,
   TextField,
 } from '@mui/material';
 import axios from 'axios';
 
-import { useRouter } from 'next/router';
 import { MyMap } from '../../components/map/myMap';
 
 const { getStorageValue } = require('../../lib/db/storage');
@@ -34,11 +31,13 @@ const handleSubmit = async (e) => {
   } catch (error) {
     console.log(error);
   }
+  localStorage.setItem('name', name);
 };
 
 export default function Home() {
   const [city, setCity] = React.useState('');
   const [center, setCenter] = React.useState('');
+  const { enqueueSnackbar, closeSnackbar } = useSnackbar();
 
   const handleCitySelect = (value) => {
     setCity(value);
@@ -52,6 +51,12 @@ export default function Home() {
     });
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, ['']);
+
+  const handleClick = () => {
+    enqueueSnackbar('Usuário atualizado com sucesso.', { 
+      variant: 'success',
+    });
+  };
 
   return (
     <div className={styles.container}>
@@ -99,7 +104,7 @@ export default function Home() {
                   width: '100%',
                 }}
               />
-              <Button type="submit" variant="contained">
+              <Button type="submit" variant="contained" onClick={handleClick}>
                 Salvar
               </Button>
             </form>

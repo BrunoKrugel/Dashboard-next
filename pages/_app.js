@@ -1,6 +1,7 @@
 import '../styles/globals.css';
 import { ThemeProvider, createTheme } from '@mui/material';
 import { MenuBar } from '../components/menu';
+import { SnackbarProvider } from 'notistack';
 
 const { getStorageValue } = require('../lib/db/storage');
 
@@ -19,9 +20,11 @@ function MyApp({ Component, pageProps }) {
   return (
     <ThemeProvider theme={theme}>
       <MenuBar user={getStorageValue('name', 'Usuário')} />
-      <div className="container">
-        <Component {...pageProps} />
-      </div>
+      <SnackbarProvider maxSnack={5}>
+        <div className="container">
+          <Component {...pageProps} />
+        </div>
+      </SnackbarProvider>
     </ThemeProvider>
   );
 }
