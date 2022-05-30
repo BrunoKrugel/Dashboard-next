@@ -205,15 +205,12 @@ export default function Dashboard() {
   }, ['']);
 
   return (
-    <div>
-    <MenuBar user={localStorage.getItem('username')}/>
     <div className={styles.container}>
       <Head>
         <title>Dashboard Weather</title>
         <meta name="description" content="Dashboard" />
         <link rel="icon" href="/cloudy.png" />
       </Head>
-      <main className={styles.main}>
         <Paper className={styles.card} elevation={3}>
           <div>
             <PlaceIcon />
@@ -340,8 +337,6 @@ export default function Dashboard() {
             Incidência de sol na região muito alta!
           </Alert>
         </Snackbar>
-      </main>
-    </div>
     </div>
   );
 }

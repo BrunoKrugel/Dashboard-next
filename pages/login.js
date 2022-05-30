@@ -7,9 +7,6 @@ import { Button, TextField, Paper, Alert, Snackbar } from '@mui/material';
 import clientPromise from '../lib/db/mongodb';
 import axios from 'axios';
 
-import { MenuBar } from '../components/menu';
-
-
 export default function Home({ isConnected }) {
   const router = useRouter();
   const [open, setOpen] = React.useState(false);
@@ -53,15 +50,12 @@ export default function Home({ isConnected }) {
   }, ['']);
 
   return (
-    <div>
-    <MenuBar />
     <div className={styles.container}>
       <Head>
         <title>Dashboard Weather</title>
         <meta name="description" content="Login Page" />
         <link rel="icon" href="/cloudy.png" />
       </Head>
-      <main className={styles.main}>
         <form onSubmit={handleSubmit}>
           <Paper className={styles.card} elevation={3}>
             <TextField id="user" label="Usuário" variant="outlined" />
@@ -94,8 +88,6 @@ export default function Home({ isConnected }) {
             Usuário/senha incorretos.
           </Alert>
         </Snackbar>
-      </main>
-    </div>
     </div>
   );
 }

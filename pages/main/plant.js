@@ -18,7 +18,6 @@ import TableRow from '@mui/material/TableRow';
 
 import { WeekInfo, WeekDate } from '../../components/week';
 import { CurrentInfo } from '../../components/info';
-import { MenuBar } from '../../components/menu';
 
 const StyledTableCell = styled(TableCell)(({ theme }) => ({
   [`&.${tableCellClasses.head}`]: {
@@ -54,8 +53,6 @@ const rows = [
 
 export default function Home() {
     return (
-      <div>
-      <MenuBar />
       <div className={styles.container}>
       <Head>
         <title>Plantações</title>
@@ -92,7 +89,6 @@ export default function Home() {
       </TableContainer>
 
         </main>
-      </div>
       </div>
     );
   }

@@ -12,8 +12,6 @@ import { styled } from '@mui/material/styles';
 
 import { WeekInfo, WeekDate } from '../../components/week';
 import { CurrentInfo } from '../../components/info';
-import { MenuBar } from '../../components/menu';
-
 const center = {
   lat: -30.0277,
   lng: -51.2287,
@@ -26,8 +24,6 @@ const handleSubmit = async (e) => {
 
 export default function Home() {
     return (
-      <div>
-      <MenuBar />
       <div className={styles.container}>
       <Head>
         <title>Configurações</title>
@@ -69,7 +65,6 @@ export default function Home() {
           </Paper>
 
         </main>
-      </div>
       </div>
     );
   }

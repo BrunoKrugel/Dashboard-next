@@ -70,7 +70,7 @@ function MenuBar(props) {
         <link rel="icon" href="/cloudy.png" />
       </Head>
 
-      <AppBar position="static">
+      <AppBar className='navbar' position="static">
         <Container maxWidth="xl">
           <Toolbar disableGutters>
             <Box sx={{ flexGrow: 1, display: { xs: 'flex', md: 'none' } }}>
