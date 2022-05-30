@@ -18,6 +18,23 @@ const { getStorageValue } = require('../../lib/db/storage');
 
 const handleSubmit = async (e) => {
   e.preventDefault();
+  const username = getStorageValue('username', '');
+  const name = e.target.name.value;
+  const email = e.target.email.value;
+  const lat = getStorageValue('lat', '');
+  const long = getStorageValue('long', '');
+  try {
+    await axios.post(`${window.location.origin}/api/db/updateUser`, {
+      username,
+      name,
+      email,
+      lat,
+      long,
+    });
+  }
+  catch (error) {
+    console.log(error);
+  }
 };
 
 export default function Home() {
@@ -56,7 +73,7 @@ export default function Home() {
                   label="Nome"
                   variant="outlined"
                   name="Nome"
-                  value={getStorageValue('name', '')}
+                  defaultValue={getStorageValue('name', '')}
                   style={{ marginBottom: '10px', width: '100%'}}
                 />
                 <TextField
@@ -64,7 +81,7 @@ export default function Home() {
                   label="E-mail"
                   variant="outlined"
                   name="E-mail"
-                  value={getStorageValue('email', '')}
+                  defaultValue={getStorageValue('email', '')}
                   style={{ marginTop: '10px' , marginBottom: '10px', width: '100%'}}
                 />
                 <TextField
