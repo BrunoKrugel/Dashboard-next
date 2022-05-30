@@ -5,7 +5,9 @@ export default async function currentWeather(req, res) {
     method: 'GET',
     url: 'https://community-open-weather-map.p.rapidapi.com/weather',
     params: {
-      q: req.body.city,
+      //q: req.body.city,
+      lat: req.body.lat,
+      lon: req.body.lon,
       callback: 'test',
       lang: 'pt_br',
       units: 'metric',

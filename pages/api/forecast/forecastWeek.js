@@ -6,7 +6,9 @@ export default async function currentWeek(req, res) {
     method: 'GET',
     url: 'https://community-open-weather-map.p.rapidapi.com/forecast/daily',
     params: {
-      q: req.body.city,
+      //q: req.body.city,
+      lat: req.body.lat,
+      lon: req.body.lon,
       cnt: '7',
       units: 'metric',
     },

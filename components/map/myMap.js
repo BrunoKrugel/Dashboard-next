@@ -41,6 +41,9 @@ function MyMap({ center, onCitySelect }) {
         .then((resCity) => {
           console.log(resCity.data);
           localStorage.setItem('cityName', resCity.data.data[0].city);
+          localStorage.setItem('country', resCity.data.data[0].countryCode);
+          localStorage.setItem('lat', args[0].latLng.lat());
+          localStorage.setItem('long', args[0].latLng.lng());
           onCitySelect(resCity.data.data[0].city);
         })
         .catch((err) => {

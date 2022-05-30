@@ -10,7 +10,6 @@ import { styled } from '@mui/material/styles';
 
 import { WeekInfo, WeekDate } from '../../components/week';
 import { CurrentInfo } from '../../components/info';
-import { MenuBar } from '../../components/menu';
 
 //Images components
 import {
@@ -24,9 +23,10 @@ import {
 import { WeatherIcon, MainWeatherIcon } from '../../components/images/weather';
 
 //Snippets
-const { unixToStampUTC } = require('../../lib/dates/unixTime');
+const { unixToStampUTC, currentTimeZone } = require('../../lib/dates/unixTime');
 const { addDays, currentDate } = require('../../lib/dates/dates');
 const toUpper = require('../../lib/string/toUpper');
+const { getStorageValue } = require('../../lib/db/storage');
 
 const Item = styled(Paper)(({ theme }) => ({
   backgroundColor: theme.palette.mode === 'dark' ? '#1A2027' : '#fff',
@@ -92,11 +92,12 @@ export default function Dashboard() {
     setUVHigh(false);
   };
 
-  const getCurrentForecast = async (city) => {
+  const getCurrentForecast = async (lat,lon) => {
     try {
       await axios
         .post(`${window.location.origin}/api/forecast/currentWeather`, {
-          city,
+          lat,
+          lon,
         })
         .then((res) => {
           localWeather = res.data.replace(/test\(/g, '').replace(/\)/g, '');
@@ -104,7 +105,7 @@ export default function Dashboard() {
 
           //Widget Current Temp
           setTemp(localWeather.main.temp.toFixed(0));
-          setCityName(localWeather.name);
+          setCityName(getStorageValue('cityName', localWeather.name));
           setWeather(toUpper(localWeather.weather[0].description));
           setIcon(localWeather.weather[0].icon);
           if (localWeather.coord) {
@@ -124,12 +125,13 @@ export default function Dashboard() {
     }
   };
 
-  const getForecastWeek = async (city) => {
+  const getForecastWeek = async (lat, lon) => {
     try {
       //Forecast for the week
       await axios
         .post(`${window.location.origin}/api/forecast/forecastWeek`, {
-          city,
+          lat,
+          lon,
         })
         .then((resWeek) => {
           weekforecast = resWeek.data.list;
@@ -186,7 +188,7 @@ export default function Dashboard() {
 
   React.useEffect(
     () => {
-      if (!weekTempDayOne) getForecastWeek('Canoas,BR');
+      if (!weekTempDayOne) getForecastWeek(getStorageValue('lat', '-30.030052'), getStorageValue('long', '-51.228714'));
     },
     // eslint-disable-next-line react-hooks/exhaustive-deps
     [weekTempDayOne]
@@ -194,7 +196,7 @@ export default function Dashboard() {
 
   useEffect(() => {
     //Get current weather
-    getCurrentForecast('Canoas,BR');
+    getCurrentForecast(getStorageValue('lat', '-30.030052'), getStorageValue('long', '-51.228714'));	
     setInterval(() => {
       //Validations
       //getCurrentForecast('Canoas,BR');

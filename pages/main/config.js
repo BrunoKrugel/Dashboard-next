@@ -14,28 +14,15 @@ import axios from 'axios';
 import { useRouter } from 'next/router';
 import { MyMap } from '../../components/map/myMap';
 
-
-
-const center = {
-  lat: -30.0277,
-  lng: -51.2287,
-};
+const { getStorageValue } = require('../../lib/db/storage');
 
 const handleSubmit = async (e) => {
   e.preventDefault();
 };
 
-function getStorageValue(key, defaultValue) {
-  // getting stored value
-  if (typeof window !== 'undefined') {
-    const saved = localStorage.getItem(key);
-    return saved || defaultValue;
-  }
-}
-
-
 export default function Home() {
   const [city, setCity] = React.useState('');
+  const [center, setCenter] = React.useState('');
   
   const handleCitySelect = (value) => {
     setCity(value);
@@ -43,6 +30,10 @@ export default function Home() {
 
   useEffect(() => {
     setCity(getStorageValue('cityName', ''));
+    setCenter({
+      lat: Number(getStorageValue('lat', '')),
+      lng: Number(getStorageValue('long', '')),
+    });
   // eslint-disable-next-line react-hooks/exhaustive-deps
   }, ['']);
 
