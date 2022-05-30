@@ -24,7 +24,7 @@ function getStorageValue(key, defaultValue) {
 function MyApp({ Component, pageProps }) {
   return (
     <ThemeProvider theme={theme}>
-      <MenuBar user={getStorageValue('username', 'Usuário')} />
+      <MenuBar user={getStorageValue('name', 'Usuário')} />
       <div className="container">
         <Component {...pageProps} />
       </div>
