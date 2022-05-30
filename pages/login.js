@@ -35,6 +35,14 @@ export default function Home({ isConnected }) {
       });
       localStorage.setItem('isLogged', 'true');
       localStorage.setItem('username', username);
+      axios.post(`${window.location.origin}/api/db/info`, {
+        username
+      }).then(res => {
+        localStorage.setItem('name', res.data.name);
+        localStorage.setItem('lat', res.data.lat);
+        localStorage.setItem('long', res.data.long);
+        localStorage.setItem('email', res.data.email);
+      });
       router.push('/main/dashboard');
     } catch (error) {
       localStorage.setItem('isLogged', '');
