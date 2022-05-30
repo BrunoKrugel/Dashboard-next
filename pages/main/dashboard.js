@@ -92,7 +92,7 @@ export default function Dashboard() {
     setUVHigh(false);
   };
 
-  const getCurrentForecast = async (lat,lon) => {
+  const getCurrentForecast = async (lat, lon) => {
     try {
       await axios
         .post(`${window.location.origin}/api/forecast/currentWeather`, {
@@ -188,7 +188,11 @@ export default function Dashboard() {
 
   React.useEffect(
     () => {
-      if (!weekTempDayOne) getForecastWeek(getStorageValue('lat', '-30.030052'), getStorageValue('long', '-51.228714'));
+      if (!weekTempDayOne)
+        getForecastWeek(
+          getStorageValue('lat', '-30.030052'),
+          getStorageValue('long', '-51.228714')
+        );
     },
     // eslint-disable-next-line react-hooks/exhaustive-deps
     [weekTempDayOne]
@@ -196,7 +200,10 @@ export default function Dashboard() {
 
   useEffect(() => {
     //Get current weather
-    getCurrentForecast(getStorageValue('lat', '-30.030052'), getStorageValue('long', '-51.228714'));	
+    getCurrentForecast(
+      getStorageValue('lat', '-30.030052'),
+      getStorageValue('long', '-51.228714')
+    );
     setInterval(() => {
       //Validations
       //getCurrentForecast('Canoas,BR');
