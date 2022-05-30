@@ -6,10 +6,10 @@ describe('Teste de umidade', () => {
   });
 
   test('Baixa', () => {
-    expect(validateAirHumidity(0).humidity.severity).toEqual('warn');
+    expect(validateAirHumidity(0).humidity.severity).toEqual('warning');
   });
 
   test('Muito alta', () => {
-    expect(validateAirHumidity(80).humidity.severity).toEqual('warn');
+    expect(validateAirHumidity(80).humidity.severity).toEqual('warning');
   });
 });

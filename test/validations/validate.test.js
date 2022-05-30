@@ -73,8 +73,8 @@ const week = {
 
 const validationsWeather = {
   humidity: {
-    severity: 'warn',
-    message: 'Low humidity favors an outer leaf edge burn.',
+    severity: 'warning',
+    message: 'Baixa umidade, pode ocorrer queimadura das folhas.',
   },
   uvIndex: {
     severity: 'info',

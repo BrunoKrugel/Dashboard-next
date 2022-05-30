@@ -6,10 +6,10 @@ describe('Teste de Temperatura', () => {
   });
 
   test('Baixa', () => {
-    expect(validateTemperature(15).temperature.severity).toEqual('warn');
+    expect(validateTemperature(15).temperature.severity).toEqual('warning');
   });
 
   test('Muito alta', () => {
-    expect(validateTemperature(26).temperature.severity).toEqual('warn');
+    expect(validateTemperature(26).temperature.severity).toEqual('warning');
   });
 });
