@@ -50,45 +50,35 @@ const week = {
     }]
 };
 
-const validationsWeather = [{
-        humidity: {
-            severity: 'warn',
-            message: 'Low humidity favors an outer leaf edge burn.',
-        }
+const validationsWeather = {
+    humidity: {
+        severity: 'warn',
+        message: 'Low humidity favors an outer leaf edge burn.',
     },
-    {
-        uvIndex: {
-            severity: 'info',
-            message: 'UV index is ideal for the plant.',
-        }
+    uvIndex: {
+        severity: 'info',
+        message: 'UV index is ideal for the plant.',
     },
-    {
-        temperature: {
-            severity: 'info',
-            message: 'Temperatura está ideal.',
-        }
+    temperature: {
+        severity: 'info',
+        message: 'Temperatura está ideal.',
     },
-    {
-        wind: {
-            severity: 'info',
-            message: 'Sem riscos de rajadas de vento.',
-        }
+    wind: {
+        severity: 'info',
+        message: 'Sem riscos de rajadas de vento.',
     }
-];
+};
 
-const validationsWeek = [{
-        Rain: {
-            severity: 'warning',
-            message: 'Quantidade de chuvas acima do ideal.',
-        }
+const validationsWeek = {
+    Rain: {
+        severity: 'warning',
+        message: 'Quantidade de chuvas acima do ideal.',
     },
-    {
-        Sun: {
-            severity: 'info',
-            message: 'Quantidade de sol para as hortas é ideal.',
-        }
+    Sun: {
+        severity: 'info',
+        message: 'Quantidade de sol para as hortas é ideal.',
     }
-];
+};
 
 describe("Teste de validações", () => {
     test('Tempo', () => {
