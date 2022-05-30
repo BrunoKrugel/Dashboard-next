@@ -32,7 +32,7 @@ const pages = [
 
 const settings = ['Logout'];
 
-function MenuBar() {
+function MenuBar(props) {
   const router = useRouter();
 
   const [anchorElNav, setAnchorElNav] = React.useState(null);
@@ -123,9 +123,10 @@ function MenuBar() {
 
             <Box sx={{ flexGrow: 0 }}>
               <Tooltip title="Usuário">
-                <IconButton onClick={handleOpenUserMenu} sx={{ p: 0 }}>
-                  <Avatar alt="Remy Sharp" src="sunny.png" />
-                </IconButton>
+                  <Button 
+                    onClick={handleOpenUserMenu}
+                    sx={{ my: 2, color: 'white', display: 'block' }}
+                  >{props.user || "Usuário"}</Button>
               </Tooltip>
               <Menu
                 sx={{ mt: '45px' }}

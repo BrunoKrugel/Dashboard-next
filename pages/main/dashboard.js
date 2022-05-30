@@ -206,7 +206,7 @@ export default function Dashboard() {
 
   return (
     <div>
-    <MenuBar />
+    <MenuBar user={localStorage.getItem('username')}/>
     <div className={styles.container}>
       <Head>
         <title>Dashboard Weather</title>
