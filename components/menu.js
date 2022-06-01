@@ -30,7 +30,7 @@ const pages = [
   },
 ];
 
-const settings = ['Logout'];
+const settings = ['Logout', 'Avisos'];
 
 function MenuBar(props) {
   const router = useRouter();
