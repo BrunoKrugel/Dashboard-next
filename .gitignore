@@ -35,3 +35,4 @@ package-lock.json
 cypress/
 
 jest-html-reporters-attach/
+jest_html_reporters.html
